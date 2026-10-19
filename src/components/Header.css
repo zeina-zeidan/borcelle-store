@@ -12,7 +12,6 @@
     height: 100%;
     margin: 0 auto;
     padding-inline: 24px;
-    /* same space on both sides */
     display: flex;
     align-items: center;
     gap: 24px;
@@ -56,13 +55,15 @@
     flex-shrink: 0;
 }
 
+/* padding-inline: start 16px, end 40px (room for the arrow)
+   logical sides flip by themselves in Arabic */
 .header-category {
     width: 145px;
     height: 40px;
     border: 3px solid #e83a5e;
     border-inline-start: 2px solid #e83a5e;
     border-inline-end: none;
-    padding-inline: 16px 44px;
+    padding-inline: 16px 40px;
     font-size: 14px;
     background: #fff;
     outline: none;
@@ -71,9 +72,13 @@
     -moz-appearance: none;
 }
 
+/* arrow at the end side: right in English, left in Arabic */
 .header-arrow {
     position: absolute;
-    inset-inline-end: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    inset-inline-end: 12px;
+    z-index: 1;
     pointer-events: none;
     font-size: 22px;
     color: #3d3d3d;
@@ -98,8 +103,13 @@
     align-items: center;
     gap: 23px;
     margin-inline-start: auto;
-    /* push nav to the end — "My cart" is the last item */
+    /* push nav to the end */
     flex-shrink: 0;
+}
+
+/* Arabic only: nav icons end on the same line as the cards */
+html[dir='rtl'] .header-nav {
+    margin-left: 20px;
 }
 
 .header-link {
@@ -143,8 +153,7 @@
     line-height: 1;
 }
 
-/* ===== Toggles in the header: right after "My cart" =====
-   (their look is in SettingsToggles.css) */
+/* ===== Toggles: right after "My cart" (look in SettingsToggles.css) ===== */
 .header-inner .header-toggles {
     position: absolute;
     top: 50%;
@@ -152,19 +161,9 @@
     inset-inline-start: calc(100% - 4px);
     padding-inline-start: 20px;
     border-inline-start: 1px solid #dee2e7;
-    /* line before the toggles */
 }
 
-/* ===== Dark mode (header only) ===== */
-html[data-theme='dark'] .header-inner .header-toggles {
-    border-color: #2e333e;
-}
-
-html[data-theme='dark'] .header-badge {
-    border-color: #1c1f27;
-}
-
-/* ===== Burger (mobile) ===== */
+/* ===== Burger (mobile menu button) ===== */
 .burger {
     display: none;
     border: none;
@@ -175,7 +174,24 @@ html[data-theme='dark'] .header-badge {
     line-height: 0;
 }
 
-/* ===== Smaller screens: no room outside, so the toggles go back inside ===== */
+/* ===== Dark mode ===== */
+html[data-theme='dark'] .header-inner .header-toggles {
+    border-color: #2e333e;
+}
+
+html[data-theme='dark'] .header-badge {
+    border-color: #1c1f27;
+}
+
+html[data-theme='dark'] .header-arrow {
+    color: var(--d-muted);
+}
+
+html[data-theme='dark'] .burger {
+    color: var(--d-text);
+}
+
+/* ===== Laptop: no room outside → toggles go back inside ===== */
 @media (max-width: 1599px) {
     .header-inner .header-toggles {
         position: static;
@@ -186,31 +202,41 @@ html[data-theme='dark'] .header-badge {
     }
 }
 
-/* ===== Mobile ===== */
+/* ===== Tablet + mobile: two rows ===== */
 @media (max-width: 991px) {
     .header {
         height: auto;
     }
 
+    /* row 1: burger · logo · icons · toggles
+       row 2: search */
     .header-inner {
         flex-wrap: wrap;
         gap: 16px;
-        padding: 16px;
+        padding: 12px 16px;
+    }
+
+    .header-logo {
+        width: 72px;
+        height: 52px;
     }
 
     .header-inner .header-toggles {
         order: 2;
-        /* stay on the first row */
+    }
+
+    html[dir='rtl'] .header-nav {
+        margin-left: 0;
     }
 
     .header-search {
-        max-width: 100%;
-        width: 100%;
         order: 3;
-        /* search goes to its own row */
+        width: 100%;
+        max-width: 100%;
         margin-inline-start: 0;
     }
 
+    /* icons only, no text under them */
     .header-link span:last-child {
         display: none;
     }
@@ -219,46 +245,36 @@ html[data-theme='dark'] .header-badge {
         display: block;
     }
 }
-/* "All category" arrow: fixed place in each language */
-.header-category-box .header-arrow {
-    position: absolute !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    width: auto !important;
-    pointer-events: none;
-    z-index: 1;
-}
 
-/* English: arrow on the right */
-html[dir='ltr'] .header-category-box .header-arrow {
-    left: auto !important;
-    right: 12px !important;
-}
+/* ===== Small phones ===== */
+@media (max-width: 576px) {
+    .header-inner {
+        gap: 10px;
+    }
 
-/* Arabic: arrow on the left */
-html[dir='rtl'] .header-category-box .header-arrow {
-    right: auto !important;
-    left: 12px !important;
-}
+    .header-logo {
+        width: 60px;
+        height: 44px;
+    }
 
-/* room for the arrow so the text never goes under it */
-html[dir='ltr'] .header-category {
-    padding: 0 40px 0 16px !important;
-}
+    .header-nav {
+        gap: 12px;
+    }
 
-html[dir='rtl'] .header-category {
-    padding: 0 16px 0 40px !important;
-}
+    .header-link .material-symbols-outlined {
+        font-size: 24px;
+    }
 
-/* arrow color in dark mode */
-html[data-theme='dark'] .header-category-box .header-arrow {
-    color: var(--d-muted);
-}
-/* Arabic only: nav icons end on the same line as the cards */
-html[dir='rtl'] .header-nav {
-    margin-left: 20px !important;
-}
-/* burger (mobile menu button): visible in dark mode */
-html[data-theme='dark'] .burger {
-    color: var(--d-text);
+    .header-inner .header-toggles {
+        padding-inline-start: 10px;
+    }
+
+    /* no room for the category list: input + button only */
+    .header-category-box {
+        display: none;
+    }
+
+    .header-search-btn {
+        width: 80px;
+    }
 }
