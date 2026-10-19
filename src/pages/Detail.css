@@ -1,33 +1,52 @@
+/* ===== Page containers: all sections share the same width ===== */
 .detail-page {
-    max-width: 1200px;
+    max-width: 1180px;
     margin: 0 auto;
-    padding: 20px 0 0px;
+    padding: 20px 0 0;
 }
 
-/* ===== مسار التنقل ===== */
-.crumb {
+.tabs-row,
+.related,
+.promo {
+    max-width: 1180px;
+    margin: 20px auto 0;
+}
+
+/* ===== Breadcrumb ===== */
+.crumbs {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 6px;
-    margin-bottom: 20px;
+    margin: 0 0 16px;
+    padding-top: 8px;
     font-size: 16px;
     color: #8b96a5;
 }
 
-.crumb a {
-    color: #8b96a5;
+.crumbs>* {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+}
+
+.crumbs a {
+    color: inherit;
     text-decoration: none;
 }
 
-.crumb .material-symbols-outlined {
+.crumbs a:hover {
+    color: #e8395a;
+}
+
+.crumbs .material-symbols-outlined {
     font-size: 18px;
 }
 
-/* ===== الكرت الكبير ===== */
+/* ===== Main card ===== */
 .detail-card {
     display: flex;
-    width: 1180px;
-    height: 580px;
+    width: 100%;
     box-sizing: border-box;
     padding: 20px;
     border: 1px solid #dee2e7;
@@ -35,7 +54,7 @@
     background: #fff;
 }
 
-/* ===== عمود الصور ===== */
+/* ===== Gallery ===== */
 .gallery {
     width: 380px;
     flex-shrink: 0;
@@ -45,7 +64,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 380px;
+    width: 100%;
     height: 380px;
     box-sizing: border-box;
     border: 1px solid #dee2e7;
@@ -54,12 +73,14 @@
 
 .gallery-main img {
     width: 345px;
+    max-width: 100%;
     height: 345px;
     object-fit: contain;
 }
 
 .gallery-thumbs {
     display: flex;
+    flex-wrap: wrap;
     gap: 9px;
     margin-top: 20px;
 }
@@ -78,7 +99,7 @@
 }
 
 .thumb.active {
-    border-color: #e8395a;
+    border-color: #1c1c1c;
 }
 
 .thumb img {
@@ -87,11 +108,11 @@
     object-fit: contain;
 }
 
-/* ===== عمود المعلومات ===== */
+/* ===== Product info ===== */
 .detail-info {
-    width: 430px;
-    flex-shrink: 0;
-    margin-left: 22px;
+    flex: 1;
+    min-width: 0;
+    margin-inline-start: 22px;
 }
 
 .stock {
@@ -118,6 +139,7 @@
 .detail-rate {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 6px;
     margin: 0 0 11px;
     font-size: 16px;
@@ -133,6 +155,7 @@
     color: #dee2e7;
 }
 
+.score,
 .rate-num {
     color: #ff9017;
     font-weight: 600;
@@ -146,11 +169,11 @@
     color: #dee2e7;
 }
 
-/* ===== مربع الأسعار ===== */
+/* ===== Price tiers ===== */
 .price-box {
     display: flex;
     align-items: center;
-    width: 430px;
+    width: 100%;
     height: 72px;
     box-sizing: border-box;
     margin-bottom: 21px;
@@ -161,11 +184,11 @@
 .price-tier {
     height: 42px;
     padding: 0 20px;
-    border-right: 1px solid #dee2e7;
+    border-inline-end: 1px solid #dee2e7;
 }
 
 .price-tier:last-child {
-    border-right: none;
+    border-inline-end: none;
 }
 
 .tier-price {
@@ -179,12 +202,12 @@
 }
 
 .tier-qty {
-    margin: 0;
+    margin: -15px 0 0;
     font-size: 13px;
-    color: #1c1c1c;
+    color: #606060;
 }
 
-/* ===== صفوف المواصفات ===== */
+/* ===== Spec rows ===== */
 .spec-row {
     display: flex;
     align-items: flex-start;
@@ -213,29 +236,28 @@
     color: #505050;
 }
 
-/* ===== عمود المورّد ===== */
+/* ===== Supplier column ===== */
 .detail-right {
     width: 280px;
     flex-shrink: 0;
-    margin-left: 27px;
+    margin-inline-start: 27px;
 }
 
 .supplier {
-    width: 280px;
-    height: 325px;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 20px 20px 16px;
     border: 1px solid #dee2e7;
     border-radius: 6px;
+    color: #8b96a5;
 }
 
 .supplier-top {
     display: flex;
     align-items: center;
     gap: 12px;
-    width: 208px;
-    height: 48px;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #dee2e7;
 }
 
 .supplier-avatar {
@@ -265,11 +287,7 @@
     color: #1c1c1c;
 }
 
-.supplier-rows {
-    margin-bottom: 20px;
-}
-
-.supplier-row {
+.sup-row {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -282,35 +300,38 @@
     width: 21px;
     height: 15px;
     object-fit: cover;
+    flex-shrink: 0;
 }
 
 .sup-icon {
     font-size: 18px;
 }
 
-.sup-btn-main {
-    width: 248px;
+.sup-btn-main,
+.sup-btn-alt {
+    display: block;
+    width: 100%;
     height: 40px;
-    margin-bottom: 8px;
-    border: none;
     border-radius: 6px;
-    background: #e8395a;
-    color: #fff;
     font-size: 16px;
     cursor: pointer;
+}
+
+.sup-btn-main {
+    margin-top: 14px;
+    border: none;
+    background: #e8395a;
+    color: #fff;
 }
 
 .sup-btn-alt {
-    width: 248px;
-    height: 40px;
+    margin-top: 8px;
     border: 1px solid #dee2e7;
-    border-radius: 6px;
     background: #fff;
     color: #e8395a;
-    font-size: 16px;
-    cursor: pointer;
 }
 
+/* ===== Save for later ===== */
 .save-later {
     display: flex;
     align-items: center;
@@ -318,74 +339,35 @@
     gap: 8px;
     width: 100%;
     margin-top: 20px;
-    padding: 0;
-    border: none;
+    padding: 8px;
     background: none;
+    border: none;
+    border-radius: 6px;
     color: #e8395a;
-    font-size: 16px;
+    font: inherit;
     cursor: pointer;
-}
-/* ===== تعديلات ===== */
-
-/* 1) تزحيل الصفحة كلها (السطر + الكرت) لليمين */
-.detail-page {
-    padding-left: 12px;
+    transition: background-color 0.2s;
 }
 
-/* 2) الكمية تحت السعر: ترتفع شوي + لون رمادي */
-.tier-qty {
-    font-size: 13px;
-    color: #606060;
-    margin-top: -15px;
+.save-later:hover {
+    background: rgba(232, 57, 90, 0.08);
 }
 
-/* 3) خط فاصل تحت بلوك السابلاير + كتابة سودا */
-.supplier,
-.supplier div,
-.supplier p,
-.supplier span {
-    color: #1c1c1c;
+/* saved: filled heart */
+.save-later.is-saved .material-symbols-outlined {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
-.supplier-avatar {
-    color: #146eb4;
-}
-
-/* 4) بوردر أسود عالصورة المختارة */
-.thumb.active {
-    border-color: #1c1c1c;
-}
-.sup-btn-main {
-    margin-top: -2px;
-}
-.supplier-top {
-    width: 100%;
-    height: auto;
-    padding-bottom: 20px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #dee2e7;
-}
-
-.supplier-top~div {
-    color: #8b96a5;
-    margin-bottom: 22px;
-}
-.supplier-top~*:not(button),
-.supplier-top~*:not(button) * {
-    color: #8b96a5;
-}
-/* ===== قسم التابس + You may like ===== */
-
+/* ===== Tabs + "You may like" ===== */
 .tabs-row {
     display: flex;
-    width: 1180px;
-    margin: 20px auto 0;
+    align-items: stretch;
+    gap: 20px;
 }
 
-/* --- كرت التابس --- */
 .tabs-card {
-    width: 880px;
-    height: 618px;
+    flex: 1;
+    min-width: 0;
     box-sizing: border-box;
     border: 1px solid #dee2e7;
     border-radius: 6px;
@@ -395,41 +377,33 @@
 .tab-bar {
     display: flex;
     align-items: center;
+    gap: 28px;
     height: 48px;
     padding: 0 20px;
     box-sizing: border-box;
     border-bottom: 1px solid #dee2e7;
     background: #fff;
-    border-radius: 6px 6px 0 0;
+    border-start-start-radius: 6px;
+    border-start-end-radius: 6px;
 }
 
 .tab-item {
     height: 48px;
     padding: 0;
+    margin: 0;
     border: none;
     border-bottom: 2px solid transparent;
     background: none;
     font-family: inherit;
     font-size: 16px;
     color: #8b96a5;
+    white-space: nowrap;
     cursor: pointer;
 }
 
 .tab-item.active {
     color: #f0345d;
     border-bottom-color: #f0345d;
-}
-
-.tab-item:nth-child(1) {
-    margin-right: 20px;
-}
-
-.tab-item:nth-child(2) {
-    margin-right: 18px;
-}
-
-.tab-item:nth-child(3) {
-    margin-right: 30px;
 }
 
 .tab-body {
@@ -443,9 +417,10 @@
     color: #505050;
 }
 
-/* --- الجدول --- */
+/* ===== Spec table ===== */
 .spec-table {
     width: 567px;
+    max-width: 100%;
     margin-top: 23px;
     border-collapse: collapse;
     font-size: 16px;
@@ -467,7 +442,7 @@
     color: #505050;
 }
 
-/* --- قائمة الصح --- */
+/* ===== Feature list ===== */
 .feature-list {
     margin: 20px 0 0;
     padding: 0;
@@ -488,16 +463,15 @@
 
 .feat-icon {
     font-size: 15px;
-    margin-right: 9.67px;
+    margin-inline-end: 9.67px;
     color: #1c1c1c;
 }
 
-/* --- كرت You may like --- */
+/* ===== "You may like" card ===== */
 .like-card {
     width: 280px;
-    height: 553px;
+    flex-shrink: 0;
     box-sizing: border-box;
-    margin-left: 20px;
     padding: 20px;
     border: 1px solid #dee2e7;
     border-radius: 6px;
@@ -525,7 +499,7 @@
     width: 70px;
     height: 70px;
     object-fit: contain;
-    margin-right: 15px;
+    margin-inline-end: 15px;
     border: 1px solid #dee2e7;
     border-radius: 6px;
     background: #fff;
@@ -544,20 +518,10 @@
     font-size: 16px;
     color: #8b96a5;
 }
-.detail-page {
-    padding-bottom: 0;
-}
 
-.tabs-row {
-    margin-top: 20px;
-}
 /* ===== Related products ===== */
-
 .related {
-    width: 1180px;
-    height: 350px;
     box-sizing: border-box;
-    margin: 20px auto 0;
     padding: 20px;
     border: 1px solid #dee2e7;
     border-radius: 6px;
@@ -572,58 +536,30 @@
 }
 
 .related-grid {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
 }
 
-.related-item {
-    width: 172px;
-}
 .related-thumb {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 172px;
-    height: 172px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
     margin-bottom: 14px;
     border-radius: 6px;
     background: #f7fafc;
     overflow: hidden;
 }
- .related-thumb img {
+
+.related-thumb img {
+    width: 85%;
+    height: 85%;
     object-fit: contain;
     mix-blend-mode: multiply;
 }
 
-.related-item:nth-child(1) .related-thumb img {
-    width: 130px;
-    height: 132px;
-}
-
-.related-item:nth-child(2) .related-thumb img {
-    width: 112px;
-    height: 134px;
-}
-
-.related-item:nth-child(3) .related-thumb img {
-    width: 150px;
-    height: 150px;
-}
-
-.related-item:nth-child(4) .related-thumb img {
-    width: 114px;
-    height: 117px;
-}
-
-.related-item:nth-child(5) .related-thumb img {
-    width: 144px;
-    height: 144px;
-}
-
-.related-item:nth-child(6) .related-thumb img {
-    width: 155px;
-    height: 163px;
-}
 .related-name {
     margin: 0 0 9px;
     font-size: 16px;
@@ -637,16 +573,13 @@
     color: #8b96a5;
 }
 
-/* ===== البانر ===== */
-
+/* ===== Promo banner ===== */
 .promo {
     position: relative;
     display: flex;
     align-items: center;
-    width: 1180px;
     height: 120px;
     box-sizing: border-box;
-    margin: 20px auto 0;
     padding: 0 40px;
     overflow: hidden;
     border-radius: 6px;
@@ -684,7 +617,7 @@
     z-index: 1;
     width: 108px;
     height: 40px;
-    margin-left: auto;
+    margin-inline-start: auto;
     border: none;
     border-radius: 6px;
     background: #ff9017;
@@ -693,142 +626,8 @@
     font-size: 16px;
     cursor: pointer;
 }
-/* ===== الموبايل ===== */
 
-@media (max-width: 1240px) {
-    .detail-page {
-        padding-left: 16px;
-        padding-right: 16px;
-    }
-
-    .detail-card {
-        width: auto;
-    }
-
-    .tabs-row {
-        width: auto;
-        margin-left: 16px;
-        margin-right: 16px;
-    }
-
-    .related {
-        width: auto;
-        margin-left: 16px;
-        margin-right: 16px;
-    }
-}
-
-@media (max-width: 991px) {
-    .detail-card {
-        flex-direction: column;
-        height: auto;
-    }
-
-    .gallery,
-    .detail-info,
-    .detail-right {
-        width: 100%;
-        margin-left: 0;
-    }
-
-    .detail-info,
-    .detail-right {
-        margin-top: 24px;
-    }
-
-    .gallery-main {
-        width: 100%;
-        height: auto;
-    }
-
-    .gallery-main img {
-        width: 100%;
-        height: auto;
-        max-width: 345px;
-    }
-
-    .price-box {
-        width: 100%;
-        height: auto;
-        flex-wrap: wrap;
-        padding: 12px 0;
-    }
-
-    .supplier {
-        width: 100%;
-    }
-
-    .sup-btn-main,
-    .sup-btn-alt {
-        width: 100%;
-    }
-
-    .tabs-row {
-        flex-direction: column;
-    }
-
-    .tabs-card {
-        width: 100%;
-        height: auto;
-        min-height: 0;
-    }
-
-    .like-card {
-        width: 100%;
-        height: auto;
-        margin-left: 0;
-        margin-top: 20px;
-    }
-
-    .spec-table {
-        width: 100%;
-    }
-
-    .related-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-    }
-
-    .related-item {
-        width: 100%;
-    }
-
-    .related-thumb {
-        width: 100%;
-    }
-
-    .related-item:nth-child(n) .related-thumb img {
-        max-width: 100%;
-        height: auto;
-    }
-}
-
-@media (max-width: 600px) {
-    .crumbs {
-        flex-wrap: wrap;
-        font-size: 13px;
-    }
-
-    .detail-name {
-        font-size: 18px;
-    }
-
-    .tab-bar {
-        overflow-x: auto;
-    }
-
-    .tab-item {
-        white-space: nowrap;
-    }
-
-    .spec-label {
-        width: 110px;
-    }
-
-    .related-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
+/* ===== States ===== */
 .detail-state {
     padding: 20px 0;
     color: #8b96a5;
@@ -843,59 +642,22 @@
     background: #fdf3e3;
     border-radius: 6px;
 }
-/* ===== Breadcrumb: "Home" link looks like the rest ===== */
-.crumbs a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.crumbs a:hover {
-    color: #e8395a;
-}
-
-/* ===== Arabic (RTL): spaces that were only on one side ===== */
-
-/* gap between the photo and the product info */
-html[dir='rtl'] .gallery {
-    margin-right: 0 !important;
-    margin-left: 28px !important;
-}
-
-/* tabs: same space between every tab */
-.tab-bar {
-    display: flex;
-    gap: 28px;
-}
-
-.tab-bar .tab-item {
-    margin: 0 !important;
-}
-
-/* "You may like": gap between photo and text */
-html[dir='rtl'] .like-item img {
-    margin-right: 0 !important;
-    margin-left: 12px !important;
-}
 
 /* ===== Dark mode ===== */
-
-/* supplier name and label */
-html[data-theme='dark'] :is(.supplier-label, .supplier-name) {
-    color: var(--d-text) !important;
+html[data-theme='dark'] .supplier-name {
+    color: var(--d-text);
 }
 
 html[data-theme='dark'] .supplier-label {
-    color: var(--d-muted) !important;
+    color: var(--d-muted);
 }
 
-/* divider under the supplier */
 html[data-theme='dark'] .supplier-top {
-    border-color: var(--d-border) !important;
+    border-color: var(--d-border);
 }
 
-/* price box: soft orange instead of bright cream */
 html[data-theme='dark'] .price-box {
-    background: rgba(255, 159, 67, 0.12) !important;
+    background: rgba(255, 159, 67, 0.12);
 }
 
 html[data-theme='dark'] .tier-price {
@@ -910,127 +672,146 @@ html[data-theme='dark'] .tier-qty {
     color: var(--d-muted);
 }
 
-/* specs table */
 html[data-theme='dark'] .spec-table td {
-    border-color: var(--d-border) !important;
+    border-color: var(--d-border);
 }
 
 html[data-theme='dark'] .spec-table .spec-key {
-    background: var(--d-surface-2) !important;
-    color: var(--d-text) !important;
+    background: var(--d-surface-2);
+    color: var(--d-text);
 }
 
 html[data-theme='dark'] .spec-table .spec-val {
-    background: transparent !important;
-    color: var(--d-muted) !important;
+    background: transparent;
+    color: var(--d-muted);
 }
 
-/* "You may like" prices */
 html[data-theme='dark'] .like-price {
     color: var(--d-muted);
 }
-/* breadcrumb: words and arrows on the same line */
-.crumbs {
-    display: flex !important;
-    align-items: center !important;
-    flex-wrap: wrap;
-    gap: 6px;
-}
 
-.crumbs>* {
-    display: inline-flex;
-    align-items: center;
-    line-height: 1 !important;
-}
-
-.crumbs .material-symbols-outlined {
-    font-size: 18px !important;
-}
-
-/* supplier card grows with its content — buttons stay inside */
-.detail-right .supplier {
-    height: auto !important;
-    min-height: 0 !important;
-    padding-bottom: 16px !important;
-    overflow: visible;
-}
-
-.supplier :is(.sup-btn-main, .sup-btn-alt) {
-    display: block;
-    width: 100%;
-}
-
-.supplier .sup-btn-alt {
-    margin-top: 8px;
-}
-.crumbs {
-    display: flex !important;
-    align-items: center !important;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin: 0 0 16px !important;
-    /* space between the breadcrumb and the card */
-    padding-top: 8px;
-}
-/* tabs card + "You may like": same height, same gap, edges in line */
-.tabs-row {
-    display: flex !important;
-    align-items: stretch !important;
-    /* both cards get the same height */
-    gap: 20px !important;
-    /* same gap as the rest of the page */
-}
-
-.tabs-row>.tabs-card,
-.tabs-row>.like-card {
-    margin: 0 !important;
-    /* cancel old one-side margins */
-}
-
-.tabs-row>.tabs-card {
-    flex: 1;
-}
-
-/* feature list: readable in dark mode */
 html[data-theme='dark'] .feature-list li {
-    color: var(--d-muted) !important;
+    color: var(--d-muted);
 }
 
 html[data-theme='dark'] .feature-list .feat-icon {
     color: #2e9e5b;
 }
-/* Arabic: move the lower cards to the right, in line with the top card */
-html[dir='rtl'] .tabs-row {
-    position: relative;
-    right: -10px;
+
+/* ===== Laptop ===== */
+@media (max-width: 1240px) {
+
+    .detail-page,
+    .tabs-row,
+    .related,
+    .promo {
+        padding-inline: 16px;
+    }
+
+    .related {
+        padding: 20px 16px;
+    }
+
+    .related-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
-html[dir='rtl'] .related {
-    position: relative;
-    right: -10px;
-}
-/* "Save for later" is a button now — keep the same look */
-.save-later {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    padding: 8px;
-    background: none;
-    border: none;
-    border-radius: 6px;
-    color: #e8395a;
-    font: inherit;
-    cursor: pointer;
-    transition: background-color 0.2s;
+/* ===== Tablet + mobile ===== */
+@media (max-width: 991px) {
+
+    /* main card: one column */
+    .detail-card {
+        flex-direction: column;
+        padding: 16px;
+    }
+
+    .gallery,
+    .detail-info,
+    .detail-right {
+        width: 100%;
+        margin-inline-start: 0;
+    }
+
+    .detail-info,
+    .detail-right {
+        margin-top: 24px;
+    }
+
+    .gallery-main {
+        height: auto;
+        padding: 16px;
+    }
+
+    .gallery-main img {
+        width: 100%;
+        height: auto;
+    }
+
+    .price-box {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 12px 0;
+    }
+
+    /* tabs and "You may like" under each other */
+    .tabs-row {
+        flex-direction: column;
+    }
+
+    .like-card {
+        width: 100%;
+    }
+
+    .related-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .promo {
+        height: auto;
+        padding: 20px 16px;
+    }
+
+    .promo-text h3 {
+        font-size: 20px;
+    }
 }
 
-.save-later:hover {
-    background: rgba(232, 57, 90, 0.08);
-}
+/* ===== Small phones ===== */
+@media (max-width: 600px) {
+    .crumbs {
+        font-size: 13px;
+    }
 
-/* saved: filled red heart */
-.save-later.is-saved .material-symbols-outlined {
-    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24 !important;
+    .detail-name {
+        font-size: 18px;
+    }
+
+    .tab-bar {
+        gap: 18px;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .tab-bar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .spec-label {
+        width: 110px;
+    }
+
+    .related-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .promo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .promo-btn {
+        margin-inline-start: 0;
+    }
 }

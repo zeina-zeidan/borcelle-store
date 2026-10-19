@@ -1278,3 +1278,30 @@ html[data-theme='dark'] .recom-card:active {
         font-size: 20px;
     }
 }
+/* ===== Quote form: empty boxes + messages ===== */
+.quote-input.is-bad,
+.quote-textarea.is-bad,
+.quote-qty.is-bad {
+    border-color: #e8395a;
+    background: #fff6f8;
+}
+
+.quote-msg {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 14px;
+    font-size: 13px;
+}
+
+.quote-msg .material-symbols-outlined {
+    font-size: 18px;
+}
+
+.quote-msg.is-error {
+    color: #e8395a;
+}
+
+.quote-msg.is-ok {
+    color: #2e9e5b;
+}

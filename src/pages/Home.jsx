@@ -159,6 +159,35 @@ function Home() {
         else navigate('/products')
     }
 
+    // ===== quote form =====
+    const [quote, setQuote] = useState({ item: '', details: '', qty: '' })
+    const [quoteError, setQuoteError] = useState(false)
+    const [quoteSent, setQuoteSent] = useState(false)
+
+    const editQuote = (field, value) => {
+        setQuote({ ...quote, [field]: value })
+        setQuoteError(false)
+        setQuoteSent(false)
+    }
+
+    const sendQuote = () => {
+        // every box must be filled
+        const empty = !quote.item.trim() || !quote.details.trim() || !quote.qty.trim()
+
+        if (empty) {
+            setQuoteSent(false)
+            setQuoteError(true)
+            return
+        }
+
+        setQuoteError(false)
+        setQuoteSent(true)
+        setQuote({ item: '', details: '', qty: '' })
+    }
+
+    // red border on an empty box, only after pressing send
+    const bad = (value) => (quoteError && !value.trim() ? ' is-bad' : '')
+
     const [cartOpen, setCartOpen] = useState(false)
     const isLoggedIn = Boolean(localStorage.getItem('token'))
 
@@ -330,12 +359,30 @@ function Home() {
                     <div className="quote-form">
                         <h3 className="quote-form-title">{t('home.quoteFormTitle')}</h3>
 
-                        <input className="quote-input" type="text" placeholder={t('home.quoteItem')} />
+                        <input
+                            className={'quote-input' + bad(quote.item)}
+                            type="text"
+                            placeholder={t('home.quoteItem')}
+                            value={quote.item}
+                            onChange={(e) => editQuote('item', e.target.value)}
+                        />
 
-                        <textarea className="quote-textarea" placeholder={t('home.quoteDetails')}></textarea>
+                        <textarea
+                            className={'quote-textarea' + bad(quote.details)}
+                            placeholder={t('home.quoteDetails')}
+                            value={quote.details}
+                            onChange={(e) => editQuote('details', e.target.value)}
+                        ></textarea>
 
                         <div className="quote-row">
-                            <input className="quote-qty" type="text" placeholder={t('home.quoteQty')} />
+                            <input
+                                className={'quote-qty' + bad(quote.qty)}
+                                type="text"
+                                inputMode="numeric"
+                                placeholder={t('home.quoteQty')}
+                                value={quote.qty}
+                                onChange={(e) => editQuote('qty', e.target.value)}
+                            />
                             <div className="quote-select-box">
                                 <select className="quote-select">
                                     {units.map((key) => (
@@ -346,7 +393,23 @@ function Home() {
                             </div>
                         </div>
 
-                        <button className="quote-btn" type="button">{t('home.quoteSend')}</button>
+                        {quoteError && (
+                            <p className="quote-msg is-error">
+                                <span className="material-symbols-outlined">error</span>
+                                {t('home.quoteError')}
+                            </p>
+                        )}
+
+                        {quoteSent && (
+                            <p className="quote-msg is-ok">
+                                <span className="material-symbols-outlined">check_circle</span>
+                                {t('home.quoteOk')}
+                            </p>
+                        )}
+
+                        <button className="quote-btn" type="button" onClick={sendQuote}>
+                            {t('home.quoteSend')}
+                        </button>
                     </div>
                 </section>
 
