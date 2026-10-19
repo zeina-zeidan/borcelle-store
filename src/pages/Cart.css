@@ -1,0 +1,703 @@
+.cart-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0 40px;
+}
+
+.cart-title {
+    margin: 0 0 23px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #1c1c1c;
+}
+
+.cart-row {
+    display: flex;
+    align-items: flex-start;
+}
+
+/* ===== كرت المنتجات ===== */
+
+.cart-card {
+    width: 880px;
+    min-height: 552px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #dee2e7;
+    border-radius: 6px;
+    background: #fff;
+}
+
+.cart-item {
+    display: flex;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #e4e4e4;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.cart-thumb {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #dee2e7;
+    border-radius: 6px;
+    background: #f7fafc;
+}
+
+.cart-thumb img {
+    object-fit: contain;
+    mix-blend-mode: multiply;
+}
+
+.cart-items .cart-item:nth-child(1) .cart-thumb img {
+    width: 52px;
+    height: 59px;
+}
+
+.cart-items .cart-item:nth-child(2) .cart-thumb img {
+    width: 60px;
+    height: 60px;
+}
+
+.cart-items .cart-item:nth-child(3) .cart-thumb img {
+    width: 63px;
+    height: 63px;
+}
+
+.cart-info {
+    flex: 1;
+}
+
+.cart-name {
+    margin: 0 0 6px;
+    font-size: 16px;
+    color: #1c1c1c;
+    line-height: 20px;
+}
+
+.cart-meta {
+    margin: 0 0 2px;
+    font-size: 16px;
+    color: #8b96a5;
+    line-height: 20px;
+}
+
+.cart-seller {
+    margin: 0 0 10px;
+    font-size: 16px;
+    color: #8b96a5;
+    line-height: 20px;
+}
+
+.cart-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-remove,
+.btn-save {
+    height: 30px;
+    border: 1px solid #dee2e7;
+    border-radius: 6px;
+    background: #fff;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.btn-remove {
+    width: 70px;
+    color: #fa3434;
+}
+
+.btn-save {
+    width: 103px;
+    color:#e8395a;
+}
+
+.cart-right {
+    width: 123px;
+    flex-shrink: 0;
+    margin-left: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.cart-price {
+    margin: 0 0 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1c1c1c;
+}
+
+.qty-select {
+    width: 123px;
+    height: 40px;
+    padding: 0 12px;
+    box-sizing: border-box;
+    border: 1px solid #dee2e7;
+    border-radius: 6px;
+    background: #fff;
+    font-family: inherit;
+    font-size: 16px;
+    color: #1c1c1c;
+    cursor: pointer;
+}
+
+.cart-foot {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid #e4e4e4;
+}
+
+.btn-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 159px;
+    height: 40px;
+    border: none;
+    border-radius: 6px;
+    background: #e8395a;
+    color: #fff;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-back .material-symbols-outlined {
+    font-size: 20px;
+}
+
+.btn-removeall {
+    width: 115px;
+    height: 40px;
+    margin-left: auto;
+    border: 1px solid #dee2e7;
+    border-radius: 6px;
+    background: #fff;
+    color: #e8395a;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* ===== العمود اليمين ===== */
+
+.cart-side {
+    width: 280px;
+    flex-shrink: 0;
+    margin-left: 20px;
+}
+
+.coupon-card {
+    width: 280px;
+    height: 110px;
+    box-sizing: border-box;
+    padding: 16px;
+    border: 1px solid #dee2e7;
+    border-radius: 6px;
+    background: #fff;
+}
+
+.coupon-title {
+    margin: 0 0 12px;
+    font-size: 16px;
+    color: #1c1c1c;
+}
+
+.coupon-row {
+    display: flex;
+    align-items: center;
+    width: 247px;
+    height: 40px;
+    border: 1px solid #dee2e7;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.coupon-input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    padding: 0 12px;
+    box-sizing: border-box;
+    border: none;
+    font-family: inherit;
+    font-size: 16px;
+    outline: none;
+}
+
+.coupon-btn {
+    flex-shrink: 0;
+    width: 85px;
+    height: 100%;
+    border: none;
+    border-left: 1px solid #dee2e7;
+    background: #fff;
+    color: #e8395a;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.total-card {
+    width: 280px;
+    height: 306px;
+    box-sizing: border-box;
+    margin-top: 12px;
+    padding: 16px;
+    border: 1px solid #dee2e7;
+    border-radius: 6px;
+    background: #fff;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+.total-label {
+    color: #8b96a5;
+}
+
+.total-value {
+    color: #1c1c1c;
+    font-weight: 500;
+}
+
+.value-red {
+    color: #fa3434;
+    font-weight: 500;
+}
+
+.value-green {
+    color: #00b517;
+    font-weight: 500;
+}
+
+.total-line {
+    height: 1px;
+    margin: 12px 0;
+    background: #e4e4e4;
+}
+
+.total-final {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1c1c1c;
+}
+
+.total-old {
+    margin-left: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #8b96a5;
+    text-decoration: line-through;
+}
+
+.btn-checkout {
+    width: 248px;
+    height: 54px;
+    border: none;
+    border-radius: 6px;
+    background: #00b517;
+    color: #fff;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.pay-icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.pay-icons img {
+    width: 34px;
+    height: 22px;
+    object-fit: contain;
+}
+
+/* ===== صفّ المزايا ===== */
+
+.benefits {
+    display: flex;
+    gap: 54px;
+    margin-top: 29px;
+}
+
+.benefit {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.benefit-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #dee2e7;
+    color: #8b96a5;
+    font-size: 22px;
+}
+
+.benefit-title {
+    margin: 0 0 2px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #1c1c1c;
+}
+
+.benefit-text {
+    margin: 0;
+    font-size: 16px;
+    color: #8b96a5;
+}
+
+/* ===== Saved for later ===== */
+
+.saved-card {
+    width: 1180px;
+    min-height: 475px;
+    box-sizing: border-box;
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #dee2e7;
+    border-radius: 6px;
+    background: #fff;
+}
+
+.saved-title {
+    margin: 0 0 22px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1c1c1c;
+}
+
+.saved-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 194px);
+    justify-content: space-between;
+}
+
+.saved-thumb {
+    width: 194px;
+    height: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    background: #eff2f4;
+    overflow: hidden;
+}
+
+.saved-thumb img {
+    max-width: 194px;
+    max-height: 194px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+}
+
+.saved-price {
+    margin: 0 0 6px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1c1c1c;
+}
+
+.saved-name {
+    margin: 0 0 16px;
+    font-size: 16px;
+    color: #505050;
+    line-height: 22px;
+}
+
+.saved-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 156px;
+    height: 40px;
+    border: 1px solid #dee2e7;
+    border-radius: 6px;
+    background: #fff;
+    color: #e8395a;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.saved-btn .material-symbols-outlined {
+    font-size: 18px;
+    color: #e8395a;
+}
+/* ===== التجاوب ===== */
+
+@media (max-width: 1240px) {
+    .cart-page {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .cart-card {
+        width: auto;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .saved-card {
+        width: 100%;
+    }
+}
+
+@media (max-width: 991px) {
+    .cart-row {
+        flex-direction: column;
+    }
+
+    .cart-card {
+        width: 100%;
+        min-height: 0;
+    }
+
+    .cart-side {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 20px;
+    }
+
+    .coupon-card,
+    .total-card {
+        width: 100%;
+        height: auto;
+    }
+
+    .coupon-row {
+        width: 100%;
+    }
+
+    .btn-checkout {
+        width: 100%;
+    }
+
+    .benefits {
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+
+    .saved-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .saved-thumb {
+        width: 100%;
+        height: 200px;
+    }
+}
+
+@media (max-width: 600px) {
+    .cart-title {
+        font-size: 20px;
+    }
+
+    .cart-item {
+        flex-wrap: wrap;
+    }
+
+    .cart-right {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 10px;
+        align-items: flex-start;
+    }
+
+    .qty-select {
+        width: 100%;
+    }
+
+    .benefits {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .saved-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .saved-btn {
+        width: 100%;
+    }
+
+    .cart-foot {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .btn-back,
+    .btn-removeall {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+.cart-state {
+    padding: 30px 0;
+    text-align: center;
+    color: #8b96a5;
+    font-size: 15px;
+}
+
+.cart-notice {
+    padding: 10px 14px;
+    margin: 0 0 14px;
+    font-size: 14px;
+    color: #9a5b00;
+    background: #fdf3e3;
+    border-radius: 6px;
+}
+/* promo banner: same width as the cards above (cart page only) */
+.cart-page .promo,
+.cart-page .promo.promo-flat {
+    box-sizing: border-box !important;
+    width: auto !important;
+    max-width: none !important;
+    margin-inline-start: 0 !important;
+    margin-inline-end: 20px !important;
+    /* same gap as the cards at the end */
+    left: auto !important;
+    right: auto !important;
+}
+
+/* the Arabic shift from Promo.css is not needed here */
+html[dir='rtl'] .cart-page .promo {
+    right: 0 !important;
+}
+/* short success message (moved / saved) */
+.cart-flash {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 16px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: rgba(46, 158, 91, 0.12);
+    color: #2e9e5b;
+    font-size: 14px;
+}
+
+.cart-flash .material-symbols-outlined {
+    font-size: 18px;
+}
+
+html[data-theme='dark'] .cart-flash {
+    color: #5fd38d;
+}
+
+/* buttons that move items: clear click feedback */
+.saved-btn,
+.btn-save {
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.saved-btn:active,
+.btn-save:active {
+    transform: scale(0.96);
+}
+
+.btn-checkout:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+/* cart thumbnails: fixed size box, the photo always fits inside */
+.cart-item .cart-thumb {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* nothing can spill outside the box */
+    border-radius: 8px;
+}
+
+.cart-item .cart-thumb img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    /* shrink the photo, never stretch or cut it */
+}
+/* gap between the cart card and the side cards (both languages) */
+.cart-row {
+    display: flex;
+    gap: 20px;
+}
+
+.cart-row>.cart-card,
+.cart-row>.cart-side {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* small buttons: text on one line, width follows the text */
+.cart-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.cart-actions :is(.btn-remove, .btn-save) {
+    width: auto !important;
+    height: auto !important;
+    padding: 6px 12px !important;
+    white-space: nowrap;
+}
+
+/* "Back to shop" at one end, "Remove all" at the other */
+.cart-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+/* Arabic: the banner is mirrored (direction: ltr), so set the sides by hand */
+html[dir='rtl'] .cart-page .promo,
+html[dir='rtl'] .cart-page .promo.promo-flat {
+    margin-right: 0 !important;
+    margin-left: 20px !important;
+}

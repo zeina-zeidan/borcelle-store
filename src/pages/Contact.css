@@ -1,0 +1,164 @@
+/* المسافة بين الهيدر والكرت = 59 */
+.contact-page {
+    min-height: calc(100vh - 86px);
+    padding: 59px 0 60px;
+}
+
+/* الكرت 1200 × 700 */
+.contact-card {
+    width: 100%;
+    max-width: 1200px;
+    height: 700px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 9px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+/* الشريط الوردي 89 */
+.contact-banner {
+    height: 89px;
+    border-radius: 7px;
+    background: linear-gradient(90deg, #f0345d 0%, #dda3b0 100%);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 0 28px;
+}
+
+.contact-back {
+    background: none;
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+.contact-back .material-symbols-outlined {
+    font-size: 34px;
+    transform: scaleX(-1);
+    font-variation-settings: 'FILL' 1 !important;
+}
+
+.contact-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+    margin: 0;
+}
+
+/* الحقول 1110 عرض، والمسافة بيناتهن 32 */
+.contact-form {
+    padding: 52px 45px 55px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.contact-field {
+    position: relative;
+}
+
+.contact-input {
+    width: 100%;
+    height: 65px;
+    border: 1px solid #d7d7d7;
+    border-radius: 8px;
+    background: #fff;
+    padding: 0 56px 0 22px;
+    font-size: 15px;
+    color: #3d3d3d;
+    outline: none;
+}
+
+.contact-textarea {
+    width: 100%;
+    height: 213px;
+    border: 1px solid #d7d7d7;
+    border-radius: 8px;
+    background: #fff;
+    padding: 20px 56px 20px 22px;
+    font-size: 15px;
+    color: #3d3d3d;
+    resize: none;
+    outline: none;
+    font-family: inherit;
+}
+
+.contact-input:focus,
+.contact-textarea:focus {
+    border-color: #e8395a;
+}
+
+.contact-input::placeholder,
+.contact-textarea::placeholder {
+    color: #b9b9b9;
+}
+
+/* الأيقونات عاليمين */
+.contact-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #EA088B;
+    font-size: 26px;
+    pointer-events: none;
+}
+
+.contact-icon-top {
+    top: 22px;
+    transform: none;
+}
+
+/* زر Send 1110 × 65 */
+.contact-send {
+    width: 100%;
+    height: 65px;
+    background: #e8395a !important;
+    color: #fff !important;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+}
+
+.contact-send:hover {
+    background: #d12f51 !important;
+}
+
+@media (max-width: 991px) {
+    .contact-card {
+        margin: 0 16px;
+        height: auto;
+    }
+
+    .contact-form {
+        padding: 28px 20px 32px;
+        gap: 20px;
+    }
+}
+.contact-error {
+    margin: 0 0 12px;
+    padding: 9px 13px;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #e8395a;
+    background: #fdeef1;
+}
+
+.contact-sent {
+    margin: 0 0 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #00b517;
+}
+/* back arrow: points left in English, right in Arabic */
+.contact-back .material-symbols-outlined {
+    transform: scaleX(-1);
+}
+
+html[dir='rtl'] .contact-back .material-symbols-outlined {
+    transform: none;
+}

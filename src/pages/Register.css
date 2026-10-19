@@ -1,0 +1,75 @@
+/* ===== Register page ===== */
+.reg-title {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+    color: #3d3d3d;
+    margin: 0 0 12px;
+}
+
+.reg-subtitle {
+    font-size: 16px;
+    line-height: 24px;
+    color: #8b96a5;
+    margin: 0 0 28px;
+}
+
+/* photo box — centered square */
+.reg-photo {
+    width: 138px;
+    height: 138px;
+    margin: 0 auto 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #fff;
+    border: 1px solid #dadada;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.reg-photo:hover {
+    border-color: #e83a5e;
+}
+
+.reg-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.reg-camera {
+    font-size: 34px;
+    color: #e83a5e;
+}
+
+.reg-photo-text {
+    font-size: 15px;
+    color: #3d3d3d;
+}
+
+/* ===== Dark mode — same colors as dark.css ===== */
+html[data-theme='dark'] .reg-title {
+    color: var(--d-text);
+}
+
+html[data-theme='dark'] .reg-subtitle {
+    color: var(--d-muted);
+}
+
+html[data-theme='dark'] .reg-photo {
+    background: var(--d-surface-2);
+    border-color: var(--d-border);
+}
+
+html[data-theme='dark'] .reg-photo:hover {
+    border-color: #e83a5e;
+}
+
+html[data-theme='dark'] .reg-photo-text {
+    color: var(--d-text);
+}

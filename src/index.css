@@ -1,0 +1,12 @@
+:root {
+  --page-bg: #F7FAFC;
+  --brand: #e8395a;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--page-bg);
+}
+body {
+  overflow-x: clip;
+}

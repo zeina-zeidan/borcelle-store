@@ -1,0 +1,436 @@
+/* Dark mode — active when <html data-theme="dark"> */
+html[data-theme='dark'] {
+    color-scheme: dark;
+    --d-bg: #121419;
+    --d-surface: #1c1f27;
+    --d-surface-2: #252934;
+    --d-border: #2e333e;
+    --d-text: #e8eaed;
+    --d-muted: #9aa3ae;
+}
+
+html[data-theme='dark'] body {
+    background: var(--d-bg);
+    color: var(--d-text);
+}
+
+/* smooth switch between light and dark */
+body,
+.header,
+.catbar,
+.prod-card,
+.cart-card,
+.detail-card,
+.profile-card {
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+/* page backgrounds */
+html[data-theme='dark'] :is(.home-page, .prod-page, .detail-page, .cart-page,
+    .profile-page, .terms-page, .contact-page, .pay-page, .pay-right) {
+    background: var(--d-bg);
+}
+
+/* cards and surfaces */
+html[data-theme='dark'] :is(.header, .catbar, .catbar-menu,
+    .banner, .deals, .deal-card, .block, .block-cell, .quote-form,
+    .recom-card, .serv-card, .sup,
+    .filters, .prod-bar, .prod-card, .grid-card, .pager-btn,
+    .detail-card, .tabs-card, .tab-bar, .like-card, .related, .supplier,
+    .cart-card, .coupon-card, .total-card, .saved-card, .saved-item,
+    .profile-card, .profile-setting,
+    .terms-card, .contact-card,
+    .success-modal, .orders-modal, .order-row,
+    .side-menu, .cart-panel) {
+    background: var(--d-surface);
+    border-color: var(--d-border);
+}
+
+/* main text */
+html[data-theme='dark'] :is(.header-link, .catbar a, .catbar-all, .catbar-help, .catbar-lang,
+    .banner-item, .deals-title, .deal-name, .block-title, .cell-name,
+    .quote-form-title, .recom-title, .recom-price, .serv-title, .serv-text,
+    .sup-title, .sup-name,
+    .filter-head, .filter-list a, .check-row, .radio-row, .prod-count,
+    .prod-name, .prod-price, .grid-price, .grid-name,
+    .detail-name, .spec-value, .tab-item, .tab-text, .like-title, .like-name,
+    .related-title, .related-name,
+    .cart-title, .cart-name, .cart-price, .total-label, .total-value, .total-final,
+    .benefit-title, .saved-title, .saved-price, .saved-name,
+    .profile-name, .profile-label, .profile-settings-title, .profile-setting,
+    .terms-heading, .terms-text,
+    .pay-item-name, .pay-row, .success-text,
+    .orders-title, .order-number) {
+    color: var(--d-text);
+}
+
+/* secondary text */
+html[data-theme='dark'] :is(.deals-text, .cell-price, .recom-desc, .sup-site, .prod-desc,
+    .spec-label, .cart-meta, .cart-seller, .benefit-text,
+    .profile-email, .pay-item-desc, .order-meta) {
+    color: var(--d-muted);
+}
+
+/* form fields */
+html[data-theme='dark'] :is(input, select, textarea):not([type='checkbox']):not([type='radio']) {
+    background: var(--d-surface-2);
+    border-color: var(--d-border);
+    color: var(--d-text);
+}
+
+html[data-theme='dark'] ::placeholder {
+    color: var(--d-muted);
+}
+
+/* dividers */
+html[data-theme='dark'] :is(.cart-item, .spec-row.has-line, .total-line, .pay-divider, .cart-foot) {
+    border-color: var(--d-border);
+}
+
+/* product thumbnails keep a light tile — photos read better on it */
+html[data-theme='dark'] :is(.related-thumb, .cart-thumb, .saved-thumb, .recom-img-box) {
+    background: #eef1f4;
+}
+
+/* header toggles (layout is in Header.css) */
+html[data-theme='dark'] .header-toggle {
+    background: var(--d-surface-2);
+    border-color: var(--d-border);
+    color: var(--d-text);
+}
+
+/* ===== Payment page ===== */
+html[data-theme='dark'] .pay-summary {
+    background: transparent;
+}
+
+html[data-theme='dark'] .pay-item-qty {
+    background: var(--d-surface-2);
+    border-color: var(--d-border);
+    color: var(--d-text);
+}
+
+/* text over the dark photo stays white */
+html[data-theme='dark'] .pay-left :is(.pay-title, .pay-subtitle, .pay-label, .pay-option-name) {
+    color: #fff;
+}
+
+html[data-theme='dark'] .pay-check {
+    background: var(--d-surface-2);
+    border-color: var(--d-border);
+    color: #e8395a;
+}
+
+/* ===== Arabic ===== */
+html[lang='ar'] body {
+    font-family: 'Zain', 'Inter', sans-serif;
+}
+
+/* keep "600 AED" in the right order in Arabic */
+html[dir='rtl'] :is([class$='price'], .total-value, .total-final) {
+    unicode-bidi: isolate;
+    direction: ltr;
+}
+
+/* ===== Home page — dark mode ===== */
+
+/* white buttons over photos keep dark text */
+html[data-theme='dark'] :is(.banner-btn, .block-btn) {
+    background: #fff;
+    color: #1c1c1c;
+}
+
+/* titles over light photos keep dark text */
+html[data-theme='dark'] :is(.banner-small, .banner-title, .block-title) {
+    color: #1c1c1c;
+}
+
+html[data-theme='dark'] .block .block-left .block-title {
+    color: #1c1c1c !important;
+}
+
+html[data-theme='dark'] .side-hi {
+    color: var(--d-text);
+}
+
+/* product photos sit on one white tile */
+html[data-theme='dark'] :is(.deal-img, .cell-img, .recom-img) {
+    background: #fff;
+    border-radius: 8px;
+    padding: 6px;
+}
+
+/* a little space between the photo tile and the cell edge */
+html[data-theme='dark'] .cell-img {
+    margin: 8px;
+}
+
+/* recommended cards: dark card, white photo tile, visible text */
+html[data-theme='dark'] .recom-card {
+    background: var(--d-surface);
+    border-color: var(--d-border);
+}
+
+html[data-theme='dark'] .recom-img-box {
+    background: transparent;
+    padding: 0;
+}
+
+html[data-theme='dark'] .recom-price {
+    color: var(--d-text);
+}
+
+html[data-theme='dark'] .recom-desc {
+    color: var(--d-muted);
+}
+
+/* timer boxes a bit lighter than the card */
+html[data-theme='dark'] .timer-box {
+    background: var(--d-surface-2);
+}
+
+/* selected category: same blue as light mode, darker */
+html[data-theme='dark'] .banner-item.active {
+    background: rgba(74, 144, 226, 0.18);
+    color: #9cc4f5;
+}
+
+/* category list hover */
+html[data-theme='dark'] .banner-item:hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: var(--d-text) !important;
+}
+
+html[data-theme='dark'] .banner-item.active:hover {
+    background: rgba(74, 144, 226, 0.22) !important;
+    color: #9cc4f5 !important;
+}
+
+/* "Welcome" card: same blue family */
+html[data-theme='dark'] .side-user {
+    background: rgba(74, 144, 226, 0.12);
+}
+
+/* ===== Same tile size for every product photo (both themes) ===== */
+.recom-img-box {
+    height: auto !important;
+}
+
+.recom-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    box-sizing: border-box;
+    padding: 12px;
+}
+
+.deal-img {
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+    box-sizing: border-box;
+}
+
+.cell-img {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+/* ===== Suppliers by region ===== */
+html[data-theme='dark'] .sup {
+    background: transparent;
+    border: none;
+}
+
+.sup .sup-grid {
+    row-gap: 24px;
+    margin-top: 16px;
+}
+
+/* ===== Arabic (RTL): services, footer ===== */
+html[dir='rtl'] .serv-icon {
+    right: auto !important;
+    left: 20px !important;
+}
+
+html[dir='rtl'] .foot-brand {
+    margin-right: 0 !important;
+    margin-left: 48px !important;
+}
+
+.foot-bottom-inner>span:first-child {
+    direction: ltr;
+    unicode-bidi: isolate;
+}
+
+/* ===== Products page — dark mode ===== */
+
+/* filters column: no card, same as light mode */
+html[data-theme='dark'] .filters {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* divider lines between filter groups */
+html[data-theme='dark'] .filter-box {
+    border-color: var(--d-border) !important;
+}
+
+/* open / close arrows in the filter titles */
+html[data-theme='dark'] .filter-head .material-symbols-outlined {
+    color: var(--d-muted) !important;
+}
+
+/* radios in the brand color */
+html[data-theme='dark'] .radio-row input {
+    accent-color: #e8395a;
+}
+
+/* "Verified only" and the sort arrows */
+html[data-theme='dark'] :is(.prod-verified, .prod-sort-arrow, .pager-show-arrow) {
+    color: var(--d-text) !important;
+}
+
+/* list / grid buttons */
+html[data-theme='dark'] .prod-view {
+    border-color: var(--d-border) !important;
+}
+
+html[data-theme='dark'] .prod-view .material-symbols-outlined {
+    color: var(--d-muted) !important;
+    background: transparent !important;
+}
+
+html[data-theme='dark'] .prod-view .material-symbols-outlined.active {
+    background: var(--d-surface-2) !important;
+    color: var(--d-text) !important;
+}
+
+/* grid view chips */
+html[data-theme='dark'] .chip {
+    background: var(--d-surface) !important;
+    border-color: var(--d-border) !important;
+    color: var(--d-text) !important;
+}
+
+/* heart button: dark in dark mode */
+html[data-theme='dark'] :is(.prod-fav, .grid-fav) {
+    background: var(--d-surface-2) !important;
+    border-color: var(--d-border) !important;
+}
+
+/* checkboxes: dark box, red when checked */
+html[data-theme='dark'] :is(.check-row, .prod-verified) input[type='checkbox'] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    border: 1.5px solid var(--d-border);
+    border-radius: 4px;
+    background: var(--d-surface-2);
+    display: inline-grid;
+    place-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+html[data-theme='dark'] :is(.check-row, .prod-verified) input[type='checkbox']:checked {
+    background: #e8395a;
+    border-color: #e8395a;
+}
+
+/* check mark drawn with CSS — looks right in any font */
+html[data-theme='dark'] :is(.check-row, .prod-verified) input[type='checkbox']:checked::after {
+    content: '';
+    width: 5px;
+    height: 9px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg) translate(-1px, -1px);
+}
+
+/* product photo: same white tile, rounded, never touching the card edge */
+html body .prod-page .prod-card img.prod-img {
+    width: 170px !important;
+    height: 170px !important;
+    object-fit: contain !important;
+    background: #fff !important;
+    border-radius: 10px !important;
+    padding: 12px !important;
+    box-sizing: border-box !important;
+    flex-shrink: 0 !important;
+    align-self: center !important;
+}
+
+/* English: space between photo and text */
+html[dir='ltr'] body .prod-page .prod-card img.prod-img {
+    margin: 0 24px 0 0 !important;
+}
+
+/* Arabic: space between photo and text (mirrored) */
+html[dir='rtl'] body .prod-page .prod-card img.prod-img {
+    margin: 0 0 0 24px !important;
+}
+
+/* Arabic: the card gets inner space on the right, like English on the left */
+html[dir='rtl'] body .prod-page .prod-card {
+    padding-right: 20px !important;
+}
+/* grid view: same white rounded tile for every photo */
+html body .prod-page .grid-card img.grid-img {
+    display: block !important;
+    width: 190px !important;
+    height: 190px !important;
+    margin: 0 auto 16px !important;
+    object-fit: contain !important;
+    background: #fff !important;
+    border-radius: 10px !important;
+    padding: 12px !important;
+    box-sizing: border-box !important;
+}
+/* grid chips: make the "x" visible */
+html[data-theme='dark'] .chip .chip-x {
+    color: var(--d-muted) !important;
+    cursor: pointer;
+}
+
+html[data-theme='dark'] .chip .chip-x:hover {
+    color: #e8395a !important;
+}
+/* recommended items: every white tile is exactly the same size */
+html body .recom-card img.recom-img {
+    display: block !important;
+    width: 175px !important;
+    height: 175px !important;
+    max-width: 100% !important;
+    aspect-ratio: auto !important;
+    margin: 0 auto !important;
+    padding: 12px !important;
+    box-sizing: border-box !important;
+    object-fit: contain !important;
+    background: #fff;
+    border-radius: 8px;
+}
+/* recommended items: every tile in the exact same spot */
+html body .recom-card .recom-img-box {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 175px !important;
+    margin: 16px 0 4px !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+/* cancel any old scale / shift on single photos */
+html body .recom-card img.recom-img {
+    transform: none !important;
+    position: static !important;
+}

@@ -1,0 +1,115 @@
+.promo {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 1180px;
+    height: 120px;
+    box-sizing: border-box;
+    margin: 20px auto 0;
+    padding: 0 40px;
+    overflow: hidden;
+    border-radius: 6px;
+    background: #d04462;
+}
+
+.promo-flat {
+    border-radius: 0 6px 6px 0;
+}
+
+.promo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #9d2740;
+    clip-path: polygon(53% 0, 100% 0, 100% 100%, 65% 100%);
+}
+
+.promo-text {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+}
+
+.promo-text h3 {
+    margin: 0 0 4px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.promo-text p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.promo-btn {
+    position: relative;
+    z-index: 1;
+    width: 108px;
+    height: 40px;
+    margin-left: auto;
+    border: none;
+    border-radius: 6px;
+    background: #ff9017;
+    color: #fff;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+}
+@media (max-width: 1240px) {
+    .promo {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .promo {
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 20px;
+    }
+
+    .promo::after {
+        display: none;
+    }
+
+    .promo-text h3 {
+        font-size: 20px;
+    }
+
+    .promo-btn {
+        margin-left: 0;
+    }
+}
+/* ===== Arabic: mirror the whole banner ===== */
+
+/* flip the banner (background shape + button side) like a mirror */
+html[dir='rtl'] .promo {
+    direction: ltr;
+    /* keep the English layout... */
+    transform: scaleX(-1);
+    /* ...then mirror it */
+    position: relative;
+    right: -10px;
+    /* in line with the cards above */
+}
+
+/* flip the text and button back so they read normally */
+html[dir='rtl'] .promo>* {
+    transform: scaleX(-1);
+    direction: rtl;
+    text-align: right;
+}
+/* space between the banner and the newsletter under it */
+.promo {
+    margin-bottom: 40px !important;
+}
+
+/* button text centered with even space on both sides */
+.promo .promo-btn {
+    padding: 8px 18px !important;
+    text-align: center !important;
+    white-space: nowrap;
+}

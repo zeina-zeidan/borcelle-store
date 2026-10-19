@@ -1,0 +1,10 @@
+.form-error {
+    margin: 0 0 12px;
+    font-size: 14px;
+    color: #e8395a;
+}
+.login-error {
+    margin: 0 0 12px;
+    color: #e8395a;
+    font-size: 14px;
+}

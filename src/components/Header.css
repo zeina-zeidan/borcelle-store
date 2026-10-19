@@ -1,0 +1,264 @@
+/* ===== Header ===== */
+.header {
+    height: 86px;
+    background: #fff;
+    border-bottom: none;
+}
+
+.header-inner {
+    position: relative;
+    /* the toggles are placed from here */
+    max-width: 1252px;
+    height: 100%;
+    margin: 0 auto;
+    padding-inline: 24px;
+    /* same space on both sides */
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.header-logo {
+    width: 86px;
+    height: 62px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* ===== Search: input + category + button ===== */
+.header-search {
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 666px;
+    margin-inline-start: 40px;
+}
+
+.header-search-input {
+    width: 421px;
+    min-width: 0;
+    flex: 1 1 auto;
+    height: 40px;
+    border: 3px solid #e83a5e;
+    border-inline-end: none;
+    border-start-start-radius: 10px;
+    border-end-start-radius: 10px;
+    padding: 0 16px;
+    font-size: 14px;
+    outline: none;
+}
+
+.header-category-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.header-category {
+    width: 145px;
+    height: 40px;
+    border: 3px solid #e83a5e;
+    border-inline-start: 2px solid #e83a5e;
+    border-inline-end: none;
+    padding-inline: 16px 44px;
+    font-size: 14px;
+    background: #fff;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.header-arrow {
+    position: absolute;
+    inset-inline-end: 16px;
+    pointer-events: none;
+    font-size: 22px;
+    color: #3d3d3d;
+    font-variation-settings: 'wght' 300;
+}
+
+.header-search-btn {
+    width: 100px;
+    height: 40px;
+    flex-shrink: 0;
+    background: #e83a5e;
+    border: none;
+    border-start-end-radius: 10px;
+    border-end-end-radius: 10px;
+    color: #fff;
+    font-size: 15px;
+}
+
+/* ===== Nav icons ===== */
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 23px;
+    margin-inline-start: auto;
+    /* push nav to the end — "My cart" is the last item */
+    flex-shrink: 0;
+}
+
+.header-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    color: #8b96a5;
+    text-decoration: none;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.header-link .material-symbols-outlined {
+    font-size: 26px;
+    font-variation-settings: 'FILL' 1;
+}
+
+/* icon wrapper keeps the badge on the icon */
+.header-icon-wrap {
+    position: relative;
+    display: inline-flex;
+}
+
+.header-badge {
+    position: absolute;
+    top: -6px;
+    inset-inline-end: -10px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #fff;
+    border-radius: 999px;
+    background: #e8395a;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* ===== Toggles in the header: right after "My cart" =====
+   (their look is in SettingsToggles.css) */
+.header-inner .header-toggles {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    inset-inline-start: calc(100% - 4px);
+    padding-inline-start: 20px;
+    border-inline-start: 1px solid #dee2e7;
+    /* line before the toggles */
+}
+
+/* ===== Dark mode (header only) ===== */
+html[data-theme='dark'] .header-inner .header-toggles {
+    border-color: #2e333e;
+}
+
+html[data-theme='dark'] .header-badge {
+    border-color: #1c1f27;
+}
+
+/* ===== Burger (mobile) ===== */
+.burger {
+    display: none;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    color: #1c1c1c;
+    line-height: 0;
+}
+
+/* ===== Smaller screens: no room outside, so the toggles go back inside ===== */
+@media (max-width: 1599px) {
+    .header-inner .header-toggles {
+        position: static;
+        transform: none;
+        order: 10;
+        /* still after "My cart" */
+        flex-shrink: 0;
+    }
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 991px) {
+    .header {
+        height: auto;
+    }
+
+    .header-inner {
+        flex-wrap: wrap;
+        gap: 16px;
+        padding: 16px;
+    }
+
+    .header-inner .header-toggles {
+        order: 2;
+        /* stay on the first row */
+    }
+
+    .header-search {
+        max-width: 100%;
+        width: 100%;
+        order: 3;
+        /* search goes to its own row */
+        margin-inline-start: 0;
+    }
+
+    .header-link span:last-child {
+        display: none;
+    }
+
+    .burger {
+        display: block;
+    }
+}
+/* "All category" arrow: fixed place in each language */
+.header-category-box .header-arrow {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: auto !important;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* English: arrow on the right */
+html[dir='ltr'] .header-category-box .header-arrow {
+    left: auto !important;
+    right: 12px !important;
+}
+
+/* Arabic: arrow on the left */
+html[dir='rtl'] .header-category-box .header-arrow {
+    right: auto !important;
+    left: 12px !important;
+}
+
+/* room for the arrow so the text never goes under it */
+html[dir='ltr'] .header-category {
+    padding: 0 40px 0 16px !important;
+}
+
+html[dir='rtl'] .header-category {
+    padding: 0 16px 0 40px !important;
+}
+
+/* arrow color in dark mode */
+html[data-theme='dark'] .header-category-box .header-arrow {
+    color: var(--d-muted);
+}
+/* Arabic only: nav icons end on the same line as the cards */
+html[dir='rtl'] .header-nav {
+    margin-left: 20px !important;
+}
+/* burger (mobile menu button): visible in dark mode */
+html[data-theme='dark'] .burger {
+    color: var(--d-text);
+}

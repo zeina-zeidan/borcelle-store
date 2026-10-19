@@ -1,0 +1,1196 @@
+.home-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0 60px;
+}
+
+/* ===== القسم 1: البانر ===== */
+.banner {
+    display: flex;
+    gap: 0;
+    height: 400px;
+    background: #fff;
+    border: 1px solid #ededed;
+    border-radius: 6px;
+    padding: 20px 20px 20px 0;
+}
+
+.banner-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 280px;
+    flex-shrink: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0 8px 8px;
+}
+
+.banner-item {
+    padding: 6px 16px;
+    font-size: 16px;
+    color: #1f1f1f;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.banner-item:hover {
+    background: #f4f6f6;
+}
+
+.banner-item.active {
+    background: #e5f1ff;
+    font-weight: 600;
+}
+
+.banner-hero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-image: url('/images/banner.png');
+    background-size: cover;
+    background-position: center;
+    padding: 53px 0 0 45px;
+}
+
+.banner-small {
+    margin: 0 0 2px;
+    font-size: 28px;
+    color: #1f1f1f;
+}
+
+.banner-title {
+    width: 280px;
+    margin: 0 0 17px;
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 700;
+    color: #1f1f1f;
+}
+
+.banner-btn {
+    width: 119px;
+    height: 40px;
+    border: none;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* ===== القسم 2: Deals and offers ===== */
+.deals {
+    display: flex;
+    height: 240px;
+    margin-top: 30px;
+    background: #fff;
+    border: 1px solid #ededed;
+    border-radius: 6px;
+}
+
+.deals-left {
+    width: 280px;
+    flex-shrink: 0;
+    padding: 26px 0 0 26px;
+}
+
+.deals-title {
+    margin: 0 0 8px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1f1f1f;
+}
+
+.deals-text {
+    margin: 0 0 20px;
+    font-size: 16px;
+    color: #8b8b8b;
+}
+
+.deals-timer {
+    display: flex;
+    gap: 6px;
+}
+
+.timer-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 50px;
+    border-radius: 4px;
+    background: #606060;
+    color: #fff;
+}
+
+.timer-num {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.timer-label {
+    font-size: 11px;
+}
+
+.deal-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid #ededed;
+}
+
+.deal-img {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+}
+
+.deal-name {
+    margin: 0 0 8px;
+    font-size: 16px;
+    color: #1f1f1f;
+}
+
+.deal-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 61px;
+    height: 28px;
+    border-radius: 14px;
+    background: #fdecef;
+    color: #e8395a;
+    font-size: 14px;
+}
+
+/* ===== القسم 3 و 4: بلوكات الأقسام ===== */
+.block {
+    display: flex;
+    height: 257px;
+    margin-top: 20px;
+    background: #fff;
+    border: 1px solid #ededed;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.block-left {
+    position: relative;
+    width: 280px;
+    flex-shrink: 0;
+    padding: 24px 0 0 24px;
+    overflow: hidden;
+}
+
+.block-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+    z-index: 0;
+}
+.block-left::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 232, 186, 0.4);
+    z-index: 1;
+    pointer-events: none;
+}
+.block-title {
+    position: relative;
+    z-index: 2;
+    width: 130px;
+    margin: 0 0 16px;
+    font-size: 20px;
+    line-height: 26px;
+    font-weight: 600;
+    color: #1f1f1f;
+}
+
+.block-btn {
+    position: relative;
+    z-index: 2;
+    width: 123px;
+    height: 40px;
+    border: none;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.block-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.block-cell {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0 0 16px;
+    border-left: 1px solid #ededed;
+    border-bottom: 1px solid #ededed;
+}
+
+.block-cell:nth-child(n + 5) {
+    border-bottom: none;
+}
+
+.cell-name {
+    margin: 0 0 9px;
+    font-size: 16px;
+    color: #1f1f1f;
+}
+
+.cell-price {
+    margin: 0;
+    font-size: 13px;
+    color: #8b8b8b;
+}
+
+.cell-img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    align-self: flex-end;
+    margin-bottom: 10px;
+}
+
+/* ===== القسم 5: بانر طلب عرض سعر ===== */
+.quote {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 446px;
+    margin-top: 20px;
+    padding: 0 31px 0 40px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.quote::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: -135px;
+    width: 1326px;
+    height: 683px;
+    background-image: url('/images/quote-bg.png');
+    background-size: cover;
+    background-position: center;
+    transform: scaleX(-1);
+    opacity: 0.7;
+}
+
+.quote::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+            #f0728d 0%,
+            rgba(240, 114, 141, 0.5) 100%);
+    pointer-events: none;
+}
+
+.quote-left {
+    position: relative;
+    z-index: 1;
+    width: 470px;
+    margin-top: 40px;
+    color: #fff;
+}
+
+.quote-title {
+    margin: 0 0 12px;
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 600;
+}
+
+.quote-text {
+    margin: 0;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.quote-form {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    width: 491px;
+    height: 372px;
+    margin-top: 30px;
+    padding: 24px 31px 51px 20px;
+    border-radius: 6px;
+    background: #fff;
+}
+
+.quote-form-title {
+    margin: 0 0 18px;
+    font-size: 20px;
+    line-height: 26px;
+    font-weight: 600;
+    color: #1c1c1c;
+}
+
+.quote-input,
+.quote-qty,
+.quote-textarea,
+.quote-select {
+    border: 1px solid #dee2e7;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: inherit;
+    outline: none;
+    background: #fff;
+}
+
+.quote-input {
+    width: 440px;
+    height: 40px;
+    padding: 0 12px;
+    margin-bottom: 20px;
+}
+
+.quote-textarea {
+    width: 440px;
+    height: 73px;
+    padding: 10px 12px;
+    margin-bottom: 20px;
+    resize: none;
+}
+
+.quote-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.quote-qty {
+    width: 206px;
+    height: 40px;
+    padding: 0 12px;
+}
+
+.quote-select-box {
+    position: relative;
+    width: 111px;
+}
+
+.quote-select {
+    width: 100%;
+    height: 40px;
+    padding: 0 28px 0 12px;
+    appearance: none;
+    cursor: pointer;
+}
+
+span.quote-arrow {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #8b8b8b;
+    pointer-events: none;
+}
+
+.quote-form ::placeholder {
+    color: #a1a1a1;
+}
+
+.quote-btn {
+    width: 128px;
+    height: 40px;
+    border: none;
+    border-radius: 6px;
+    background: #e8395a;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* ===== القسم 6: Recommended items ===== */
+/* ===== القسم 6: Recommended items ===== */
+.recom {
+    margin-top: 30px;
+}
+
+.recom-title {
+    margin: 0 0 20px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #1c1c1c;
+}
+
+.recom-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 220px);
+    gap: 20px;
+}
+
+.recom-card {
+    position: relative;
+    width: 220px;
+    height: 310px;
+    padding: 214px 14px 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.recom-img-box {
+    position: absolute;
+    inset: 0;
+}
+
+.recom-img {
+    position: absolute;
+    object-fit: contain;
+}
+
+/* مقاس وموقع كل صورة لحالها */
+.recom-card:nth-child(1) .recom-img {
+    top: 23.22px;
+    left: 34.89px;
+    width: 150.22px;
+    height: 170.67px;
+}
+
+.recom-card:nth-child(2) .recom-img {
+    top: 23.22px;
+    left: 22.44px;
+    width: 172.45px;
+    height: 170.67px;
+}
+
+.recom-card:nth-child(3) .recom-img {
+    top: 24.11px;
+    left: 28.67px;
+    width: 156.44px;
+    height: 169.78px;
+}
+
+.recom-card:nth-child(4) .recom-img {
+    top: 24.11px;
+    left: 26px;
+    width: 168.89px;
+    height: 170.67px;
+}
+
+.recom-card:nth-child(5) .recom-img {
+    top: 23.22px;
+    left: 24.22px;
+    width: 172.45px;
+    height: 172.45px;
+}
+
+.recom-card:nth-child(6) .recom-img {
+    top: 33px;
+    left: 36.67px;
+    width: 147.55px;
+    height: 152px;
+}
+
+.recom-card:nth-child(7) .recom-img {
+    top: 12.56px;
+    left: 13.56px;
+    width: 193.77px;
+    height: 193.77px;
+}
+
+.recom-card:nth-child(8) .recom-img {
+    top: 23.22px;
+    left: 24.22px;
+    width: 172.45px;
+    height: 172.45px;
+}
+
+.recom-card:nth-child(9) .recom-img {
+    top: 13.44px;
+    left: 18.89px;
+    width: 191.11px;
+    height: 191.12px;
+}
+
+.recom-card:nth-child(10) .recom-img {
+    top: 17px;
+    left: 17.11px;
+    width: 185.78px;
+    height: 185.78px;
+}
+
+.recom-price {
+    margin: 0 0 6px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1c1c1c;
+}
+
+.recom-desc {
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+    color: #8b8b8b;
+}
+/* ===== القسم 7: Our extra services ===== */
+/* ===== القسم 7: Our extra services ===== */
+.serv {
+    margin-top: 30px;
+}
+
+.serv-title {
+    margin: 0 0 20px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #1c1c1c;
+}
+
+.serv-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 280px);
+    gap: 20px;
+}
+
+.serv-card {
+    width: 280px;
+    height: 200px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.serv-img-box {
+    position: relative;
+    height: 120px;
+    background: #000;
+}
+
+.serv-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+}
+
+span.serv-icon {
+    position: absolute;
+    right: 21px;
+    bottom: -27.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #d1e7ff;
+    color: #1c1c1c;
+    font-size: 28px;
+    font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24 !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+.serv-text {
+    margin: 0;
+    padding: 16px 16px 0;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 500;
+    color: #1c1c1c;
+    white-space: pre-line;
+}
+/* ===== القسم 8: Suppliers by region ===== */
+.sup {
+    margin-top: 30px;
+}
+
+.sup-title {
+    margin: 0 0 24px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #1c1c1c;
+}
+
+.sup-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 18px;
+    row-gap: 10px;
+}
+
+.sup-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sup-flag {
+    width: 30px;
+    height: 20px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.sup-name {
+    margin: 0 0 2px;
+    font-size: 16px;
+    line-height: 20px;
+    color: #1c1c1c;
+}
+
+.sup-site {
+    margin: 0;
+    font-size: 13px;
+    line-height: 16px;
+    color: #8b8b8b;
+}
+/* ===== القسم 9: النشرة البريدية ===== */
+
+.cart-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: flex-end;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.cart-panel {
+    display: flex;
+    flex-direction: column;
+    width: 690px;
+    height: 100vh;
+    padding: 90px 34px 42px;
+    background: #fff;
+    overflow-y: auto;
+}
+
+.cart-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: -25px;
+    padding-bottom: 20px;
+    margin-bottom: 21px;
+    border-bottom: 1px solid #e8e8e8;
+}
+.cart-title {
+    margin: 0;
+    font-size: 34px;
+    font-weight: 700;
+    color: #1c1c1c;
+}
+
+.cart-close {
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #1c1c1c;
+}
+
+.cart-close .material-symbols-outlined {
+    font-size: 38px;
+}
+
+.cart-list {
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+    flex: 1;
+    margin-top: 25px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    height: 180px;
+}
+
+.cart-img-box {
+    position: relative;
+    width: 178px;
+    height: 180px;
+    flex-shrink: 0;
+}
+
+.cart-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.cart-badge {
+    position: absolute;
+    top: 10px;
+    right: -8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border: 4px solid #EA088B;
+    border-radius: 50%;
+    background: #fff;
+    color: #e8395a;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.cart-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.cart-name {
+    margin: 0 0 4px;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 34px;
+    color: #1c1c1c;
+}
+
+.cart-desc {
+    margin: 0 0 14px;
+    font-size: 20px;
+    line-height: 26px;
+    color: #8b8b8b;
+}
+
+.cart-actions {
+    display: flex;
+    align-items: center;
+}
+
+.qty-box {
+    display: flex;
+    align-items: center;
+    width: 117px;
+    height: 49px;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.qty-btn {
+    flex: 1;
+    height: 100%;
+    border: none;
+    background: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.qty-num {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border: none;
+    font-size: 18px;
+}
+
+.cart-del {
+    margin-left: 22px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #e8395a;
+}
+
+.cart-del .material-symbols-outlined {
+    font-size: 34px;
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24 !important;
+}
+
+.cart-price {
+    flex-shrink: 0;
+    font-family: 'Zain', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 140%;
+    color: #f0345d;
+    white-space: nowrap;
+}
+
+.cart-total-price {
+    font-family: 'Zain', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 140%;
+    color: #f0345d;
+}
+.cart-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin:21px 0;
+    font-size: 32px;
+    font-weight: 700;
+    color: #1c1c1c;
+}
+
+.cart-total-price {
+    font-size: 36px;
+        font-weight: 700;
+    color: #f0345d;
+}
+
+.cart-checkout {
+    flex-shrink: 0;
+    width: 100%;
+    height: 63px;
+    border: none;
+    border-radius: 7px;
+    background:#f0345d ;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
+}
+/* خط فاصل بين المنتج التاني والتالت */
+.cart-item:nth-child(2) {
+    height: auto;
+    padding-bottom: 19px;
+    margin-bottom: 38px;
+    border-bottom: 1px solid #e8e8e8;
+}
+/* ===== القسم الجانبي تبع البانر ===== */
+/* ===== القسم الجانبي تبع البانر ===== */
+.banner-side {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 200px;
+    flex-shrink: 0;
+    margin-left: 20px;
+}
+
+.side-card {
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 500;
+}
+
+.side-user {
+    height: 150px;
+    flex-shrink: 0;
+    background: #e3f0ff;
+}
+
+.side-user-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+span.side-avatar {
+    flex-shrink: 0;
+    font-size: 36px;
+    color: #91B1E7;
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24 !important;
+}
+.side-hi {
+    margin: 0;
+    font-size: 14px;
+    line-height: 19px;
+    font-weight: 500;
+    color: #1c1c1c;
+}
+
+.side-join {
+    width: 100%;
+    height: 32px;
+    margin-bottom: 6px;
+    border: none;
+    border-radius: 6px;
+    background: #e8395a;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.side-login {
+    width: 100%;
+    height: 32px;
+    border: none;
+    border-radius: 6px;
+    background: #fff;
+    color: #e8395a;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.side-orange,
+.side-pink {
+    display: flex;
+    align-items: center;
+    height: 95px;
+    flex-shrink: 0;
+}
+
+.side-orange {
+    background: #f38332;
+    color: #fff;
+}
+
+.side-pink {
+    background: #f0728d;
+    color: #fff;
+}
+/* "\n" in translated texts = new line */
+.pre-line {
+    white-space: pre-line;
+}
+/* ===== Arabic (RTL) fixes ===== */
+
+/* 1) banner text stays on the left, away from the photo */
+html[dir='rtl'] .banner-hero {
+    direction: ltr;
+}
+
+html[dir='rtl'] .banner-hero>* {
+    direction: rtl;
+    width: fit-content;
+}
+
+/* 2) "From USD 19" — Arabic sentence, only the price stays LTR */
+html[dir='rtl'] .cell-price {
+    direction: rtl !important;
+    unicode-bidi: normal !important;
+}
+
+/* 3) space from the right edge in Arabic */
+html[dir='rtl'] .deals-left {
+    padding-left: 0 !important;
+    padding-right: 24px !important;
+}
+
+html[dir='rtl'] .block-left {
+    padding-left: 0 !important;
+    padding-right: 22px !important;
+}
+
+html[dir='rtl'] .block-cell {
+    padding-left: 0 !important;
+    padding-right: 16px !important;
+}
+/* Arabic: space inside the big card on the left side */
+html[dir='rtl'] .banner {
+    padding-left: 20px !important;
+}
+
+/* Arabic: gap between the side cards and the banner photo */
+html[dir='rtl'] .banner-side {
+    margin-left: 0 !important;
+    margin-right: 18px !important;
+}
+/* ===== Cards fill the full width (both languages) ===== */
+.recom .recom-grid {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 20px !important;
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+.serv .serv-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 20px !important;
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+/* each card takes its column width */
+.recom-grid .recom-card,
+.serv-grid .serv-card {
+    width: auto !important;
+    margin: 0 !important;
+}
+
+/* mobile: fewer columns */
+@media (max-width: 991px) {
+    .recom .recom-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .serv .serv-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+/* more space between the photo tile and the text under it */
+.deal-card .deal-name {
+    margin-top: 12px !important;
+}
+
+.recom-card .recom-price {
+    margin-top: 12px !important;
+}
+/* discount badge: number centered inside the pill */
+.deal-card .deal-badge {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    line-height: 1 !important;
+    padding: 7px 12px 3px !important;
+    /* more space on top → number goes down */
+}
+/* ===== left categories: clickable ===== */
+.banner-item {
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.banner-item:hover {
+    background: #e5f1ff;
+    color: #0d6efd;
+}
+
+html[data-theme='dark'] .banner-item:hover {
+    background: var(--d-surface-2, #252934);
+    color: #fff;
+}
+/* ===== product cards: dark border inside + image grows ===== */
+.deal-card,
+.block-cell,
+.recom-card {
+    position: relative;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.deal-card:hover,
+.block-cell:hover,
+.recom-card:hover {
+    box-shadow: inset 0 0 0 1.5px #3d3d3d;
+    z-index: 2;
+}
+
+/* the image grows, not the card → nothing gets cut */
+.deal-img,
+.cell-img {
+    transition: transform 0.25s ease;
+}
+
+.deal-card:hover .deal-img,
+.block-cell:hover .cell-img {
+    transform: scale(1.1);
+}
+
+/* recommended image size is locked in dark.css → scale its box */
+.recom-img-box {
+    transition: transform 0.25s ease;
+}
+
+.recom-card:hover .recom-img-box {
+    transform: scale(1.06);
+}
+
+/* click feedback */
+.deal-card:active,
+.block-cell:active,
+.recom-card:active {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+/* dark mode */
+html[data-theme='dark'] .deal-card:hover,
+html[data-theme='dark'] .block-cell:hover,
+html[data-theme='dark'] .recom-card:hover {
+    box-shadow: inset 0 0 0 1.5px #c9ced6;
+}
+
+html[data-theme='dark'] .deal-card:active,
+html[data-theme='dark'] .block-cell:active,
+html[data-theme='dark'] .recom-card:active {
+    background: rgba(255, 255, 255, 0.04);
+}
+/* ===== product cards: border layer on top + image grows ===== */
+.deal-card,
+.block-cell,
+.recom-card {
+    position: relative;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+/* image can't spill out of its cell */
+.block-cell {
+    overflow: hidden;
+}
+
+/* the border is a layer above the image → never covered */
+.deal-card::after,
+.block-cell::after,
+.recom-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1.5px solid transparent;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 5;
+    transition: border-color 0.2s ease;
+}
+
+.deal-card:hover::after,
+.block-cell:hover::after,
+.recom-card:hover::after {
+    border-color: #3d3d3d;
+}
+
+/* the image grows a little */
+.deal-img,
+.cell-img,
+.recom-img-box {
+    transition: transform 0.25s ease;
+}
+
+.deal-card:hover .deal-img,
+.block-cell:hover .cell-img {
+    transform: scale(1.1);
+}
+
+.recom-card:hover .recom-img-box {
+    transform: scale(1.06);
+}
+
+/* click feedback */
+.deal-card:active,
+.block-cell:active,
+.recom-card:active {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+/* dark mode */
+html[data-theme='dark'] .deal-card:hover::after,
+html[data-theme='dark'] .block-cell:hover::after,
+html[data-theme='dark'] .recom-card:hover::after {
+    border-color: #c9ced6;
+}
+
+html[data-theme='dark'] .deal-card:active,
+html[data-theme='dark'] .block-cell:active,
+html[data-theme='dark'] .recom-card:active {
+    background: rgba(255, 255, 255, 0.04);
+}

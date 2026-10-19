@@ -1,0 +1,214 @@
+.foot {
+    background: #fff;
+}
+
+.foot-inner {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.foot-inner>*:nth-child(2) {
+    margin-left: 40px;
+}
+
+.foot-inner>*:nth-child(3) {
+    margin-left: 64px;
+}
+
+.foot-inner>*:nth-child(4) {
+    margin-left: 64px;
+}
+
+.foot-inner>*:nth-child(5) {
+    margin-left: 91px;
+}
+
+.foot-inner>*:nth-child(6) {
+    margin-left: 87px;
+}
+
+.foot-brand {
+    width: 276px;
+}
+
+.foot-logo {
+    width: 92px;
+    height: 66px;
+    object-fit: contain;
+    margin-bottom: 14px;
+}
+
+.foot-desc {
+    width: 276px;
+    margin: 0 0 18px;
+    font-size: 16px;
+    line-height: 22px;
+    color: #8b96a5;
+}
+
+.foot-social {
+    display: flex;
+    gap: 10px;
+}
+
+.foot-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #cdd3dc;
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.foot-col-title {
+    margin: 0 0 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1c1c1c;
+}
+
+.foot-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.foot-list li {
+    margin-bottom: 3px;
+}
+
+.foot-list a {
+    font-size: 16px;
+    color: #8b96a5;
+    text-decoration: none;
+}
+
+.foot-list a:hover {
+    color: #1c1c1c;
+}
+
+.foot-app {
+    display: block;
+    width: 124px;
+    height: 42px;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+
+.foot-app:first-of-type {
+    margin-top: 15px;
+}
+
+.foot-bottom {
+    background: #dee2e7;
+}
+
+.foot-bottom-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 23px 136px 21px 120px;
+    font-size: 16px;
+    color: #1c1c1c;
+}
+
+.foot-lang {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.foot-lang img {
+    width: 22px;
+    height: 16px;
+    object-fit: cover;
+}
+
+.foot-lang .material-symbols-outlined {
+    font-size: 20px;
+}
+@media (max-width: 991px) {
+    .foot-inner {
+        flex-wrap: wrap;
+        gap: 28px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .foot-inner>*:nth-child(n) {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .foot-bottom-inner {
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+        text-align: center;
+    }
+}
+/* language switch is a button now — keep the old look */
+.foot-lang {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
+
+.foot-lang:hover {
+    color: #e8395a;
+}
+
+/* ===== Dark mode ===== */
+
+
+html[data-theme='dark'] .foot-col-title {
+    color: var(--d-text);
+}
+
+html[data-theme='dark'] :is(.foot-desc, .foot-list a) {
+    color: var(--d-muted);
+}
+
+html[data-theme='dark'] .foot-list a:hover {
+    color: #e8395a;
+}
+
+html[data-theme='dark'] .foot-social a {
+    background: var(--d-surface-2);
+    color: var(--d-muted);
+}
+
+/* footer darker than the newsletter — like light mode */
+html[data-theme='dark'] .foot {
+    background: var(--d-bg);
+}
+
+/* bottom bar lighter, with readable text */
+html[data-theme='dark'] .foot-bottom {
+    background: var(--d-surface);
+    border-top: 1px solid var(--d-border);
+}
+
+html[data-theme='dark'] :is(.foot-bottom-inner, .foot-bottom-inner span, .foot-lang) {
+    color: var(--d-muted) !important;
+}
+
+html[data-theme='dark'] .foot-lang:hover {
+    color: #e8395a !important;
+}
