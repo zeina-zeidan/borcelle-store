@@ -1,11 +1,14 @@
+/* ===== Promo banner ===== */
 .promo {
     position: relative;
     display: flex;
     align-items: center;
-    width: 1180px;
+    width: calc(100% - 32px);
+    /* 16px gap on each side */
+    max-width: 1180px;
     height: 120px;
     box-sizing: border-box;
-    margin: 20px auto 0;
+    margin: 20px auto 40px;
     padding: 0 40px;
     overflow: hidden;
     border-radius: 6px;
@@ -16,6 +19,7 @@
     border-radius: 0 6px 6px 0;
 }
 
+/* the darker shape on the side */
 .promo::after {
     content: '';
     position: absolute;
@@ -45,23 +49,37 @@
 .promo-btn {
     position: relative;
     z-index: 1;
-    width: 108px;
-    height: 40px;
     margin-left: auto;
+    padding: 8px 18px;
+    min-width: 108px;
+    height: 40px;
     border: none;
     border-radius: 6px;
     background: #ff9017;
     color: #fff;
     font-family: inherit;
     font-size: 16px;
+    text-align: center;
+    white-space: nowrap;
     cursor: pointer;
 }
-@media (max-width: 1240px) {
-    .promo {
-        width: 100%;
-    }
+
+/* ===== Arabic: mirror the whole banner ===== */
+
+/* keep the English layout, then flip it like a mirror */
+html[dir='rtl'] .promo {
+    direction: ltr;
+    transform: scaleX(-1);
 }
 
+/* flip the text and the button back so they read normally */
+html[dir='rtl'] .promo>* {
+    transform: scaleX(-1);
+    direction: rtl;
+    text-align: right;
+}
+
+/* ===== Small phones ===== */
 @media (max-width: 600px) {
     .promo {
         height: auto;
@@ -71,6 +89,7 @@
         padding: 20px;
     }
 
+    /* no room for the shape */
     .promo::after {
         display: none;
     }
@@ -82,34 +101,4 @@
     .promo-btn {
         margin-left: 0;
     }
-}
-/* ===== Arabic: mirror the whole banner ===== */
-
-/* flip the banner (background shape + button side) like a mirror */
-html[dir='rtl'] .promo {
-    direction: ltr;
-    /* keep the English layout... */
-    transform: scaleX(-1);
-    /* ...then mirror it */
-    position: relative;
-    right: -10px;
-    /* in line with the cards above */
-}
-
-/* flip the text and button back so they read normally */
-html[dir='rtl'] .promo>* {
-    transform: scaleX(-1);
-    direction: rtl;
-    text-align: right;
-}
-/* space between the banner and the newsletter under it */
-.promo {
-    margin-bottom: 40px !important;
-}
-
-/* button text centered with even space on both sides */
-.promo .promo-btn {
-    padding: 8px 18px !important;
-    text-align: center !important;
-    white-space: nowrap;
 }

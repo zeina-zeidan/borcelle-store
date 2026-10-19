@@ -6,8 +6,7 @@
 }
 
 .tabs-row,
-.related,
-.promo {
+.related {
     max-width: 1180px;
     margin: 20px auto 0;
 }
@@ -573,60 +572,6 @@
     color: #8b96a5;
 }
 
-/* ===== Promo banner ===== */
-.promo {
-    position: relative;
-    display: flex;
-    align-items: center;
-    height: 120px;
-    box-sizing: border-box;
-    padding: 0 40px;
-    overflow: hidden;
-    border-radius: 6px;
-    background: #d04462;
-}
-
-.promo::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: #9d2740;
-    clip-path: polygon(53% 0, 100% 0, 100% 100%, 65% 100%);
-}
-
-.promo-text {
-    position: relative;
-    z-index: 1;
-    color: #fff;
-}
-
-.promo-text h3 {
-    margin: 0 0 4px;
-    font-size: 24px;
-    font-weight: 600;
-}
-
-.promo-text p {
-    margin: 0;
-    font-size: 16px;
-    font-weight: 400;
-}
-
-.promo-btn {
-    position: relative;
-    z-index: 1;
-    width: 108px;
-    height: 40px;
-    margin-inline-start: auto;
-    border: none;
-    border-radius: 6px;
-    background: #ff9017;
-    color: #fff;
-    font-family: inherit;
-    font-size: 16px;
-    cursor: pointer;
-}
-
 /* ===== States ===== */
 .detail-state {
     padding: 20px 0;
@@ -703,8 +648,7 @@ html[data-theme='dark'] .feature-list .feat-icon {
 
     .detail-page,
     .tabs-row,
-    .related,
-    .promo {
+    .related {
         padding-inline: 16px;
     }
 
@@ -766,15 +710,6 @@ html[data-theme='dark'] .feature-list .feat-icon {
     .related-grid {
         grid-template-columns: repeat(3, 1fr);
     }
-
-    .promo {
-        height: auto;
-        padding: 20px 16px;
-    }
-
-    .promo-text h3 {
-        font-size: 20px;
-    }
 }
 
 /* ===== Small phones ===== */
@@ -803,15 +738,5 @@ html[data-theme='dark'] .feature-list .feat-icon {
 
     .related-grid {
         grid-template-columns: repeat(2, 1fr);
-    }
-
-    .promo {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 14px;
-    }
-
-    .promo-btn {
-        margin-inline-start: 0;
     }
 }
