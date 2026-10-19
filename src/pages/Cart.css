@@ -1,3 +1,4 @@
+/* ===== Page ===== */
 .cart-page {
     max-width: 1200px;
     margin: 0 auto;
@@ -11,15 +12,17 @@
     color: #1c1c1c;
 }
 
+/* products card + side column */
 .cart-row {
     display: flex;
     align-items: flex-start;
+    gap: 20px;
 }
 
-/* ===== كرت المنتجات ===== */
-
+/* ===== Products card ===== */
 .cart-card {
-    width: 880px;
+    flex: 1;
+    min-width: 0;
     min-height: 552px;
     box-sizing: border-box;
     display: flex;
@@ -43,41 +46,31 @@
     padding-bottom: 0;
 }
 
+/* fixed box, the photo always fits inside */
 .cart-thumb {
     width: 80px;
     height: 80px;
     flex-shrink: 0;
-    margin-right: 16px;
+    margin-inline-end: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
     border: 1px solid #dee2e7;
-    border-radius: 6px;
+    border-radius: 8px;
     background: #f7fafc;
 }
 
 .cart-thumb img {
+    width: 100%;
+    height: 100%;
     object-fit: contain;
     mix-blend-mode: multiply;
 }
 
-.cart-items .cart-item:nth-child(1) .cart-thumb img {
-    width: 52px;
-    height: 59px;
-}
-
-.cart-items .cart-item:nth-child(2) .cart-thumb img {
-    width: 60px;
-    height: 60px;
-}
-
-.cart-items .cart-item:nth-child(3) .cart-thumb img {
-    width: 63px;
-    height: 63px;
-}
-
 .cart-info {
     flex: 1;
+    min-width: 0;
 }
 
 .cart-name {
@@ -101,36 +94,43 @@
     line-height: 20px;
 }
 
+/* small buttons: text on one line, width follows the text */
 .cart-actions {
     display: flex;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .btn-remove,
 .btn-save {
-    height: 30px;
+    padding: 6px 12px;
     border: 1px solid #dee2e7;
     border-radius: 6px;
     background: #fff;
     font-family: inherit;
     font-size: 13px;
+    white-space: nowrap;
     cursor: pointer;
+    transition: transform 0.1s;
 }
 
 .btn-remove {
-    width: 70px;
     color: #fa3434;
 }
 
 .btn-save {
-    width: 103px;
-    color:#e8395a;
+    color: #e8395a;
 }
 
+.btn-save:active {
+    transform: scale(0.96);
+}
+
+/* price + quantity */
 .cart-right {
     width: 123px;
     flex-shrink: 0;
-    margin-left: 16px;
+    margin-inline-start: 16px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -157,9 +157,12 @@
     cursor: pointer;
 }
 
+/* ===== Card footer ===== */
 .cart-foot {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: 12px;
     margin-top: auto;
     padding-top: 20px;
     border-top: 1px solid #e4e4e4;
@@ -188,7 +191,6 @@
 .btn-removeall {
     width: 115px;
     height: 40px;
-    margin-left: auto;
     border: 1px solid #dee2e7;
     border-radius: 6px;
     background: #fff;
@@ -198,17 +200,13 @@
     cursor: pointer;
 }
 
-/* ===== العمود اليمين ===== */
-
+/* ===== Side column ===== */
 .cart-side {
     width: 280px;
     flex-shrink: 0;
-    margin-left: 20px;
 }
 
 .coupon-card {
-    width: 280px;
-    height: 110px;
     box-sizing: border-box;
     padding: 16px;
     border: 1px solid #dee2e7;
@@ -225,7 +223,7 @@
 .coupon-row {
     display: flex;
     align-items: center;
-    width: 247px;
+    width: 100%;
     height: 40px;
     border: 1px solid #dee2e7;
     border-radius: 6px;
@@ -249,7 +247,7 @@
     width: 85px;
     height: 100%;
     border: none;
-    border-left: 1px solid #dee2e7;
+    border-inline-start: 1px solid #dee2e7;
     background: #fff;
     color: #e8395a;
     font-family: inherit;
@@ -258,8 +256,6 @@
 }
 
 .total-card {
-    width: 280px;
-    height: 306px;
     box-sizing: border-box;
     margin-top: 12px;
     padding: 16px;
@@ -311,7 +307,7 @@
 }
 
 .total-old {
-    margin-left: 8px;
+    margin-inline-start: 8px;
     font-size: 14px;
     font-weight: 400;
     color: #8b96a5;
@@ -319,7 +315,7 @@
 }
 
 .btn-checkout {
-    width: 248px;
+    width: 100%;
     height: 54px;
     border: none;
     border-radius: 6px;
@@ -328,6 +324,11 @@
     font-family: inherit;
     font-size: 16px;
     cursor: pointer;
+}
+
+.btn-checkout:disabled {
+    opacity: 0.5;
+    cursor: default;
 }
 
 .pay-icons {
@@ -343,10 +344,10 @@
     object-fit: contain;
 }
 
-/* ===== صفّ المزايا ===== */
-
+/* ===== Benefits row ===== */
 .benefits {
     display: flex;
+    flex-wrap: wrap;
     gap: 54px;
     margin-top: 29px;
 }
@@ -384,10 +385,8 @@
 }
 
 /* ===== Saved for later ===== */
-
 .saved-card {
-    width: 1180px;
-    min-height: 475px;
+    width: 100%;
     box-sizing: border-box;
     margin-top: 30px;
     padding: 20px;
@@ -405,12 +404,12 @@
 
 .saved-grid {
     display: grid;
-    grid-template-columns: repeat(4, 194px);
-    justify-content: space-between;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
 }
 
 .saved-thumb {
-    width: 194px;
+    width: 100%;
     height: 230px;
     display: flex;
     align-items: center;
@@ -422,8 +421,8 @@
 }
 
 .saved-thumb img {
-    max-width: 194px;
-    max-height: 194px;
+    max-width: 85%;
+    max-height: 85%;
     object-fit: contain;
     mix-blend-mode: multiply;
 }
@@ -448,6 +447,7 @@
     justify-content: center;
     gap: 8px;
     width: 156px;
+    max-width: 100%;
     height: 40px;
     border: 1px solid #dee2e7;
     border-radius: 6px;
@@ -456,31 +456,74 @@
     font-family: inherit;
     font-size: 16px;
     cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.saved-btn:active {
+    transform: scale(0.96);
 }
 
 .saved-btn .material-symbols-outlined {
     font-size: 18px;
     color: #e8395a;
 }
-/* ===== التجاوب ===== */
 
+/* ===== Promo banner: same width as the cards above ===== */
+.cart-page .promo {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+    inset-inline: auto;
+}
+
+/* ===== States and messages ===== */
+.cart-state {
+    padding: 30px 0;
+    text-align: center;
+    color: #8b96a5;
+    font-size: 15px;
+}
+
+.cart-notice {
+    padding: 10px 14px;
+    margin: 0 0 14px;
+    font-size: 14px;
+    color: #9a5b00;
+    background: #fdf3e3;
+    border-radius: 6px;
+}
+
+/* short success message (moved / saved) */
+.cart-flash {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 16px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: rgba(46, 158, 91, 0.12);
+    color: #2e9e5b;
+    font-size: 14px;
+}
+
+.cart-flash .material-symbols-outlined {
+    font-size: 18px;
+}
+
+/* ===== Dark mode ===== */
+html[data-theme='dark'] .cart-flash {
+    color: #5fd38d;
+}
+
+/* ===== Laptop ===== */
 @media (max-width: 1240px) {
     .cart-page {
-        padding-left: 16px;
-        padding-right: 16px;
-    }
-
-    .cart-card {
-        width: auto;
-        flex: 1;
-        min-width: 0;
-    }
-
-    .saved-card {
-        width: 100%;
+        padding-inline: 16px;
     }
 }
 
+/* ===== Tablet + mobile ===== */
 @media (max-width: 991px) {
     .cart-row {
         flex-direction: column;
@@ -493,40 +536,22 @@
 
     .cart-side {
         width: 100%;
-        margin-left: 0;
-        margin-top: 20px;
-    }
-
-    .coupon-card,
-    .total-card {
-        width: 100%;
-        height: auto;
-    }
-
-    .coupon-row {
-        width: 100%;
-    }
-
-    .btn-checkout {
-        width: 100%;
     }
 
     .benefits {
-        flex-wrap: wrap;
         gap: 24px;
     }
 
     .saved-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
     }
 
     .saved-thumb {
-        width: 100%;
         height: 200px;
     }
 }
 
+/* ===== Small phones ===== */
 @media (max-width: 600px) {
     .cart-title {
         font-size: 20px;
@@ -538,7 +563,7 @@
 
     .cart-right {
         width: 100%;
-        margin-left: 0;
+        margin-inline-start: 0;
         margin-top: 10px;
         align-items: flex-start;
     }
@@ -563,141 +588,22 @@
     .cart-foot {
         flex-direction: column;
         align-items: stretch;
-        gap: 12px;
     }
 
     .btn-back,
     .btn-removeall {
         width: 100%;
-        margin-left: 0;
     }
 }
-.cart-state {
-    padding: 30px 0;
-    text-align: center;
-    color: #8b96a5;
-    font-size: 15px;
+/* dark mode: quantity select follows the dark card */
+html[data-theme='dark'] .qty-select {
+    background: var(--d-surface, #1c1f27);
+    border-color: var(--d-border, #2e333e);
+    color: var(--d-text, #e8eaed);
 }
 
-.cart-notice {
-    padding: 10px 14px;
-    margin: 0 0 14px;
-    font-size: 14px;
-    color: #9a5b00;
-    background: #fdf3e3;
-    border-radius: 6px;
-}
-/* promo banner: same width as the cards above (cart page only) */
-.cart-page .promo,
-.cart-page .promo.promo-flat {
-    box-sizing: border-box !important;
-    width: auto !important;
-    max-width: none !important;
-    margin-inline-start: 0 !important;
-    margin-inline-end: 20px !important;
-    /* same gap as the cards at the end */
-    left: auto !important;
-    right: auto !important;
-}
-
-/* the Arabic shift from Promo.css is not needed here */
-html[dir='rtl'] .cart-page .promo {
-    right: 0 !important;
-}
-/* short success message (moved / saved) */
-.cart-flash {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin: 0 0 16px;
-    padding: 8px 14px;
-    border-radius: 8px;
-    background: rgba(46, 158, 91, 0.12);
-    color: #2e9e5b;
-    font-size: 14px;
-}
-
-.cart-flash .material-symbols-outlined {
-    font-size: 18px;
-}
-
-html[data-theme='dark'] .cart-flash {
-    color: #5fd38d;
-}
-
-/* buttons that move items: clear click feedback */
-.saved-btn,
-.btn-save {
-    cursor: pointer;
-    transition: transform 0.1s;
-}
-
-.saved-btn:active,
-.btn-save:active {
-    transform: scale(0.96);
-}
-
-.btn-checkout:disabled {
-    opacity: 0.5;
-    cursor: default;
-}
-/* cart thumbnails: fixed size box, the photo always fits inside */
-.cart-item .cart-thumb {
-    width: 80px;
-    height: 80px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    /* nothing can spill outside the box */
-    border-radius: 8px;
-}
-
-.cart-item .cart-thumb img {
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    /* shrink the photo, never stretch or cut it */
-}
-/* gap between the cart card and the side cards (both languages) */
-.cart-row {
-    display: flex;
-    gap: 20px;
-}
-
-.cart-row>.cart-card,
-.cart-row>.cart-side {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-}
-
-/* small buttons: text on one line, width follows the text */
-.cart-actions {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.cart-actions :is(.btn-remove, .btn-save) {
-    width: auto !important;
-    height: auto !important;
-    padding: 6px 12px !important;
-    white-space: nowrap;
-}
-
-/* "Back to shop" at one end, "Remove all" at the other */
-.cart-foot {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-}
-/* Arabic: the banner is mirrored (direction: ltr), so set the sides by hand */
-html[dir='rtl'] .cart-page .promo,
-html[dir='rtl'] .cart-page .promo.promo-flat {
-    margin-right: 0 !important;
-    margin-left: 20px !important;
+html[data-theme='dark'] .coupon-input,
+html[data-theme='dark'] .coupon-btn {
+    background: transparent;
+    color: var(--d-text, #e8eaed);
 }

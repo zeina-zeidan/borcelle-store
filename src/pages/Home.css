@@ -1305,3 +1305,16 @@ html[data-theme='dark'] .recom-card:active {
 .quote-msg.is-ok {
     color: #2e9e5b;
 }
+/* dark mode: quantity buttons follow the dark card */
+html[data-theme='dark'] .qty-box {
+    border-color: var(--d-border, #2e333e);
+}
+
+html[data-theme='dark'] .qty-btn {
+    background: transparent;
+    color: var(--d-text, #e8eaed);
+}
+
+html[data-theme='dark'] .qty-btn:hover {
+    background: var(--d-surface-2, #252934);
+}
