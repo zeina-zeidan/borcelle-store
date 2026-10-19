@@ -236,8 +236,8 @@ html[data-theme='dark'] .burger {
         margin-inline-start: 0;
     }
 
-    /* icons only, no text under them */
-    .header-link span:last-child {
+    /* icons only, no text under them (the icon itself always stays) */
+    .header-link>span:not(.material-symbols-outlined):not(.header-icon-wrap) {
         display: none;
     }
 
