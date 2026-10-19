@@ -1,18 +1,29 @@
+/* ===== Page ===== */
 .home-page {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px 0 60px;
 }
 
-/* ===== القسم 1: البانر ===== */
+/* "\n" in translated texts = new line */
+.pre-line {
+    white-space: pre-line;
+}
+
+/* ===== 1. Banner ===== */
 .banner {
     display: flex;
-    gap: 0;
     height: 400px;
     background: #fff;
     border: 1px solid #ededed;
     border-radius: 6px;
-    padding: 20px 20px 20px 0;
+    padding: 20px;
+    padding-inline-start: 0;
+}
+
+/* Arabic: same space on both sides */
+html[dir='rtl'] .banner {
+    padding-inline-start: 20px;
 }
 
 .banner-list {
@@ -32,10 +43,12 @@
     color: #1f1f1f;
     border-radius: 6px;
     cursor: pointer;
+    transition: background 0.2s, color 0.2s;
 }
 
 .banner-item:hover {
-    background: #f4f6f6;
+    background: #e5f1ff;
+    color: #0d6efd;
 }
 
 .banner-item.active {
@@ -52,6 +65,16 @@
     background-size: cover;
     background-position: center;
     padding: 53px 0 0 45px;
+}
+
+/* Arabic: the text stays on the left, away from the photo */
+html[dir='rtl'] .banner-hero {
+    direction: ltr;
+}
+
+html[dir='rtl'] .banner-hero>* {
+    direction: rtl;
+    width: fit-content;
 }
 
 .banner-small {
@@ -79,7 +102,94 @@
     cursor: pointer;
 }
 
-/* ===== القسم 2: Deals and offers ===== */
+/* ===== Banner side cards ===== */
+.banner-side {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 200px;
+    flex-shrink: 0;
+    margin-inline-start: 20px;
+}
+
+.side-card {
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 500;
+}
+
+.side-user {
+    height: 150px;
+    flex-shrink: 0;
+    background: #e3f0ff;
+}
+
+.side-user-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.side-user-top span.side-avatar {
+    flex-shrink: 0;
+    font-size: 36px;
+    color: #91b1e7;
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.side-hi {
+    margin: 0;
+    font-size: 14px;
+    line-height: 19px;
+    font-weight: 500;
+    color: #1c1c1c;
+}
+
+.side-join {
+    width: 100%;
+    height: 32px;
+    margin-bottom: 6px;
+    border: none;
+    border-radius: 6px;
+    background: #e8395a;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.side-login {
+    width: 100%;
+    height: 32px;
+    border: none;
+    border-radius: 6px;
+    background: #fff;
+    color: #e8395a;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.side-orange,
+.side-pink {
+    display: flex;
+    align-items: center;
+    height: 95px;
+    flex-shrink: 0;
+}
+
+.side-orange {
+    background: #f38332;
+    color: #fff;
+}
+
+.side-pink {
+    background: #f0728d;
+    color: #fff;
+}
+
+/* ===== 2. Deals and offers ===== */
 .deals {
     display: flex;
     height: 240px;
@@ -92,7 +202,8 @@
 .deals-left {
     width: 280px;
     flex-shrink: 0;
-    padding: 26px 0 0 26px;
+    padding-block-start: 26px;
+    padding-inline-start: 26px;
 }
 
 .deals-title {
@@ -140,7 +251,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-left: 1px solid #ededed;
+    border-inline-start: 1px solid #ededed;
 }
 
 .deal-img {
@@ -150,24 +261,26 @@
 }
 
 .deal-name {
-    margin: 0 0 8px;
+    margin: 12px 0 8px;
     font-size: 16px;
     color: #1f1f1f;
 }
 
+/* discount badge: number centered inside the pill */
 .deal-badge {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 61px;
-    height: 28px;
+    min-width: 61px;
+    padding: 7px 12px 3px;
     border-radius: 14px;
     background: #fdecef;
     color: #e8395a;
     font-size: 14px;
+    line-height: 1;
 }
 
-/* ===== القسم 3 و 4: بلوكات الأقسام ===== */
+/* ===== 3 & 4. Category blocks ===== */
 .block {
     display: flex;
     height: 257px;
@@ -182,7 +295,8 @@
     position: relative;
     width: 280px;
     flex-shrink: 0;
-    padding: 24px 0 0 24px;
+    padding-block-start: 24px;
+    padding-inline-start: 24px;
     overflow: hidden;
 }
 
@@ -195,6 +309,7 @@
     opacity: 0.8;
     z-index: 0;
 }
+
 .block-left::after {
     content: '';
     position: absolute;
@@ -203,6 +318,7 @@
     z-index: 1;
     pointer-events: none;
 }
+
 .block-title {
     position: relative;
     z-index: 2;
@@ -236,9 +352,11 @@
 .block-cell {
     display: flex;
     justify-content: space-between;
-    padding: 30px 0 0 16px;
-    border-left: 1px solid #ededed;
+    padding-block-start: 30px;
+    padding-inline-start: 16px;
+    border-inline-start: 1px solid #ededed;
     border-bottom: 1px solid #ededed;
+    overflow: hidden;
 }
 
 .block-cell:nth-child(n + 5) {
@@ -251,10 +369,12 @@
     color: #1f1f1f;
 }
 
+/* Arabic sentence, only the price stays LTR */
 .cell-price {
     margin: 0;
     font-size: 13px;
     color: #8b8b8b;
+    unicode-bidi: normal;
 }
 
 .cell-img {
@@ -265,7 +385,7 @@
     margin-bottom: 10px;
 }
 
-/* ===== القسم 5: بانر طلب عرض سعر ===== */
+/* ===== 5. Quote request ===== */
 .quote {
     position: relative;
     display: flex;
@@ -273,7 +393,7 @@
     align-items: flex-start;
     height: 446px;
     margin-top: 20px;
-    padding: 0 31px 0 40px;
+    padding-inline: 40px 31px;
     border-radius: 6px;
     overflow: hidden;
     background: #fff;
@@ -297,9 +417,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg,
-            #f0728d 0%,
-            rgba(240, 114, 141, 0.5) 100%);
+    background: linear-gradient(90deg, #f0728d 0%, rgba(240, 114, 141, 0.5) 100%);
     pointer-events: none;
 }
 
@@ -332,7 +450,8 @@
     width: 491px;
     height: 372px;
     margin-top: 30px;
-    padding: 24px 31px 51px 20px;
+    padding-block: 24px 51px;
+    padding-inline: 20px 31px;
     border-radius: 6px;
     background: #fff;
 }
@@ -359,6 +478,7 @@
 
 .quote-input {
     width: 440px;
+    max-width: 100%;
     height: 40px;
     padding: 0 12px;
     margin-bottom: 20px;
@@ -366,6 +486,7 @@
 
 .quote-textarea {
     width: 440px;
+    max-width: 100%;
     height: 73px;
     padding: 10px 12px;
     margin-bottom: 20px;
@@ -387,19 +508,20 @@
 .quote-select-box {
     position: relative;
     width: 111px;
+    flex-shrink: 0;
 }
 
 .quote-select {
     width: 100%;
     height: 40px;
-    padding: 0 28px 0 12px;
+    padding-inline: 12px 28px;
     appearance: none;
     cursor: pointer;
 }
 
-span.quote-arrow {
+.quote-select-box span.quote-arrow {
     position: absolute;
-    right: 8px;
+    inset-inline-end: 8px;
     top: 50%;
     transform: translateY(-50%);
     font-size: 20px;
@@ -423,8 +545,7 @@ span.quote-arrow {
     cursor: pointer;
 }
 
-/* ===== القسم 6: Recommended items ===== */
-/* ===== القسم 6: Recommended items ===== */
+/* ===== 6. Recommended items ===== */
 .recom {
     margin-top: 30px;
 }
@@ -438,13 +559,12 @@ span.quote-arrow {
 
 .recom-grid {
     display: grid;
-    grid-template-columns: repeat(5, 220px);
+    grid-template-columns: repeat(5, 1fr);
     gap: 20px;
 }
 
 .recom-card {
     position: relative;
-    width: 220px;
     height: 310px;
     padding: 214px 14px 0;
     border: 1px solid #e0e0e0;
@@ -453,89 +573,29 @@ span.quote-arrow {
     overflow: hidden;
 }
 
+/* one fixed tile for every product photo */
 .recom-img-box {
     position: absolute;
-    inset: 0;
+    inset-block-start: 16px;
+    inset-inline: 0;
+    height: 175px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .recom-img {
-    position: absolute;
+    width: 175px;
+    height: 175px;
+    max-width: 100%;
+    padding: 12px;
     object-fit: contain;
-}
-
-/* مقاس وموقع كل صورة لحالها */
-.recom-card:nth-child(1) .recom-img {
-    top: 23.22px;
-    left: 34.89px;
-    width: 150.22px;
-    height: 170.67px;
-}
-
-.recom-card:nth-child(2) .recom-img {
-    top: 23.22px;
-    left: 22.44px;
-    width: 172.45px;
-    height: 170.67px;
-}
-
-.recom-card:nth-child(3) .recom-img {
-    top: 24.11px;
-    left: 28.67px;
-    width: 156.44px;
-    height: 169.78px;
-}
-
-.recom-card:nth-child(4) .recom-img {
-    top: 24.11px;
-    left: 26px;
-    width: 168.89px;
-    height: 170.67px;
-}
-
-.recom-card:nth-child(5) .recom-img {
-    top: 23.22px;
-    left: 24.22px;
-    width: 172.45px;
-    height: 172.45px;
-}
-
-.recom-card:nth-child(6) .recom-img {
-    top: 33px;
-    left: 36.67px;
-    width: 147.55px;
-    height: 152px;
-}
-
-.recom-card:nth-child(7) .recom-img {
-    top: 12.56px;
-    left: 13.56px;
-    width: 193.77px;
-    height: 193.77px;
-}
-
-.recom-card:nth-child(8) .recom-img {
-    top: 23.22px;
-    left: 24.22px;
-    width: 172.45px;
-    height: 172.45px;
-}
-
-.recom-card:nth-child(9) .recom-img {
-    top: 13.44px;
-    left: 18.89px;
-    width: 191.11px;
-    height: 191.12px;
-}
-
-.recom-card:nth-child(10) .recom-img {
-    top: 17px;
-    left: 17.11px;
-    width: 185.78px;
-    height: 185.78px;
+    background: #fff;
+    border-radius: 8px;
 }
 
 .recom-price {
-    margin: 0 0 6px;
+    margin: 12px 0 6px;
     font-size: 16px;
     font-weight: 600;
     color: #1c1c1c;
@@ -547,8 +607,8 @@ span.quote-arrow {
     line-height: 20px;
     color: #8b8b8b;
 }
-/* ===== القسم 7: Our extra services ===== */
-/* ===== القسم 7: Our extra services ===== */
+
+/* ===== 7. Our extra services ===== */
 .serv {
     margin-top: 30px;
 }
@@ -562,12 +622,11 @@ span.quote-arrow {
 
 .serv-grid {
     display: grid;
-    grid-template-columns: repeat(4, 280px);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
 
 .serv-card {
-    width: 280px;
     height: 200px;
     border: 1px solid #e0e0e0;
     border-radius: 6px;
@@ -588,9 +647,9 @@ span.quote-arrow {
     opacity: 0.5;
 }
 
-span.serv-icon {
+.serv-img-box span.serv-icon {
     position: absolute;
-    right: 21px;
+    inset-inline-end: 21px;
     bottom: -27.5px;
     display: flex;
     align-items: center;
@@ -601,9 +660,10 @@ span.serv-icon {
     background: #d1e7ff;
     color: #1c1c1c;
     font-size: 28px;
-    font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24 !important;
+    font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
+
 .serv-text {
     margin: 0;
     padding: 16px 16px 0;
@@ -613,7 +673,8 @@ span.serv-icon {
     color: #1c1c1c;
     white-space: pre-line;
 }
-/* ===== القسم 8: Suppliers by region ===== */
+
+/* ===== 8. Suppliers by region ===== */
 .sup {
     margin-top: 30px;
 }
@@ -658,8 +719,59 @@ span.serv-icon {
     line-height: 16px;
     color: #8b8b8b;
 }
-/* ===== القسم 9: النشرة البريدية ===== */
 
+/* ===== Product cards: border on hover + the photo grows ===== */
+.deal-card,
+.block-cell,
+.recom-card {
+    position: relative;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+/* the border is a layer above the photo → never covered */
+.deal-card::after,
+.block-cell::after,
+.recom-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1.5px solid transparent;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 5;
+    transition: border-color 0.2s ease;
+}
+
+.deal-card:hover::after,
+.block-cell:hover::after,
+.recom-card:hover::after {
+    border-color: #3d3d3d;
+}
+
+.deal-img,
+.cell-img,
+.recom-img-box {
+    transition: transform 0.25s ease;
+}
+
+.deal-card:hover .deal-img,
+.block-cell:hover .cell-img {
+    transform: scale(1.1);
+}
+
+.recom-card:hover .recom-img-box {
+    transform: scale(1.06);
+}
+
+/* click feedback */
+.deal-card:active,
+.block-cell:active,
+.recom-card:active {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+/* ===== Side shopping bag ===== */
 .cart-overlay {
     position: fixed;
     inset: 0;
@@ -673,6 +785,7 @@ span.serv-icon {
     display: flex;
     flex-direction: column;
     width: 690px;
+    max-width: 100%;
     height: 100vh;
     padding: 90px 34px 42px;
     background: #fff;
@@ -688,6 +801,7 @@ span.serv-icon {
     margin-bottom: 21px;
     border-bottom: 1px solid #e8e8e8;
 }
+
 .cart-title {
     margin: 0;
     font-size: 34px;
@@ -722,6 +836,14 @@ span.serv-icon {
     height: 180px;
 }
 
+/* line between the second and the third product */
+.cart-item:nth-child(2) {
+    height: auto;
+    padding-bottom: 19px;
+    margin-bottom: 38px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
 .cart-img-box {
     position: relative;
     width: 178px;
@@ -738,13 +860,13 @@ span.serv-icon {
 .cart-badge {
     position: absolute;
     top: 10px;
-    right: -8px;
+    inset-inline-end: -8px;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 34px;
     height: 34px;
-    border: 4px solid #EA088B;
+    border: 4px solid #ea088b;
     border-radius: 50%;
     background: #fff;
     color: #e8395a;
@@ -807,7 +929,7 @@ span.serv-icon {
 }
 
 .cart-del {
-    margin-left: 22px;
+    margin-inline-start: 22px;
     padding: 0;
     border: none;
     background: none;
@@ -817,11 +939,11 @@ span.serv-icon {
 
 .cart-del .material-symbols-outlined {
     font-size: 34px;
-    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24 !important;
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
-.cart-price {
-    flex-shrink: 0;
+.cart-price,
+.cart-total-price {
     font-family: 'Zain', sans-serif;
     font-size: 36px;
     font-weight: 700;
@@ -830,27 +952,18 @@ span.serv-icon {
     white-space: nowrap;
 }
 
-.cart-total-price {
-    font-family: 'Zain', sans-serif;
-    font-size: 36px;
-    font-weight: 700;
-    line-height: 140%;
-    color: #f0345d;
+.cart-price {
+    flex-shrink: 0;
 }
+
 .cart-total {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin:21px 0;
+    margin: 21px 0;
     font-size: 32px;
     font-weight: 700;
     color: #1c1c1c;
-}
-
-.cart-total-price {
-    font-size: 36px;
-        font-weight: 700;
-    color: #f0345d;
 }
 
 .cart-checkout {
@@ -859,330 +972,19 @@ span.serv-icon {
     height: 63px;
     border: none;
     border-radius: 7px;
-    background:#f0345d ;
+    background: #f0345d;
     color: #fff;
     font-size: 24px;
     font-weight: 600;
     cursor: pointer;
 }
-/* خط فاصل بين المنتج التاني والتالت */
-.cart-item:nth-child(2) {
-    height: auto;
-    padding-bottom: 19px;
-    margin-bottom: 38px;
-    border-bottom: 1px solid #e8e8e8;
-}
-/* ===== القسم الجانبي تبع البانر ===== */
-/* ===== القسم الجانبي تبع البانر ===== */
-.banner-side {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 200px;
-    flex-shrink: 0;
-    margin-left: 20px;
-}
 
-.side-card {
-    border-radius: 6px;
-    padding: 12px;
-    font-size: 16px;
-    line-height: 22px;
-    font-weight: 500;
-}
-
-.side-user {
-    height: 150px;
-    flex-shrink: 0;
-    background: #e3f0ff;
-}
-
-.side-user-top {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 10px;
-}
-span.side-avatar {
-    flex-shrink: 0;
-    font-size: 36px;
-    color: #91B1E7;
-    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24 !important;
-}
-.side-hi {
-    margin: 0;
-    font-size: 14px;
-    line-height: 19px;
-    font-weight: 500;
-    color: #1c1c1c;
-}
-
-.side-join {
-    width: 100%;
-    height: 32px;
-    margin-bottom: 6px;
-    border: none;
-    border-radius: 6px;
-    background: #e8395a;
-    color: #fff;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-.side-login {
-    width: 100%;
-    height: 32px;
-    border: none;
-    border-radius: 6px;
-    background: #fff;
-    color: #e8395a;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-.side-orange,
-.side-pink {
-    display: flex;
-    align-items: center;
-    height: 95px;
-    flex-shrink: 0;
-}
-
-.side-orange {
-    background: #f38332;
-    color: #fff;
-}
-
-.side-pink {
-    background: #f0728d;
-    color: #fff;
-}
-/* "\n" in translated texts = new line */
-.pre-line {
-    white-space: pre-line;
-}
-/* ===== Arabic (RTL) fixes ===== */
-
-/* 1) banner text stays on the left, away from the photo */
-html[dir='rtl'] .banner-hero {
-    direction: ltr;
-}
-
-html[dir='rtl'] .banner-hero>* {
-    direction: rtl;
-    width: fit-content;
-}
-
-/* 2) "From USD 19" — Arabic sentence, only the price stays LTR */
-html[dir='rtl'] .cell-price {
-    direction: rtl !important;
-    unicode-bidi: normal !important;
-}
-
-/* 3) space from the right edge in Arabic */
-html[dir='rtl'] .deals-left {
-    padding-left: 0 !important;
-    padding-right: 24px !important;
-}
-
-html[dir='rtl'] .block-left {
-    padding-left: 0 !important;
-    padding-right: 22px !important;
-}
-
-html[dir='rtl'] .block-cell {
-    padding-left: 0 !important;
-    padding-right: 16px !important;
-}
-/* Arabic: space inside the big card on the left side */
-html[dir='rtl'] .banner {
-    padding-left: 20px !important;
-}
-
-/* Arabic: gap between the side cards and the banner photo */
-html[dir='rtl'] .banner-side {
-    margin-left: 0 !important;
-    margin-right: 18px !important;
-}
-/* ===== Cards fill the full width (both languages) ===== */
-.recom .recom-grid {
-    display: grid !important;
-    grid-template-columns: repeat(5, 1fr) !important;
-    gap: 20px !important;
-    width: 100% !important;
-    margin: 0 !important;
-}
-
-.serv .serv-grid {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 20px !important;
-    width: 100% !important;
-    margin: 0 !important;
-}
-
-/* each card takes its column width */
-.recom-grid .recom-card,
-.serv-grid .serv-card {
-    width: auto !important;
-    margin: 0 !important;
-}
-
-/* mobile: fewer columns */
-@media (max-width: 991px) {
-    .recom .recom-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-    }
-
-    .serv .serv-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-    }
-}
-/* more space between the photo tile and the text under it */
-.deal-card .deal-name {
-    margin-top: 12px !important;
-}
-
-.recom-card .recom-price {
-    margin-top: 12px !important;
-}
-/* discount badge: number centered inside the pill */
-.deal-card .deal-badge {
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    line-height: 1 !important;
-    padding: 7px 12px 3px !important;
-    /* more space on top → number goes down */
-}
-/* ===== left categories: clickable ===== */
-.banner-item {
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-}
-
-.banner-item:hover {
-    background: #e5f1ff;
-    color: #0d6efd;
-}
-
+/* ===== Dark mode ===== */
 html[data-theme='dark'] .banner-item:hover {
     background: var(--d-surface-2, #252934);
     color: #fff;
 }
-/* ===== product cards: dark border inside + image grows ===== */
-.deal-card,
-.block-cell,
-.recom-card {
-    position: relative;
-    cursor: pointer;
-    transition: box-shadow 0.2s ease, background 0.2s ease;
-}
 
-.deal-card:hover,
-.block-cell:hover,
-.recom-card:hover {
-    box-shadow: inset 0 0 0 1.5px #3d3d3d;
-    z-index: 2;
-}
-
-/* the image grows, not the card → nothing gets cut */
-.deal-img,
-.cell-img {
-    transition: transform 0.25s ease;
-}
-
-.deal-card:hover .deal-img,
-.block-cell:hover .cell-img {
-    transform: scale(1.1);
-}
-
-/* recommended image size is locked in dark.css → scale its box */
-.recom-img-box {
-    transition: transform 0.25s ease;
-}
-
-.recom-card:hover .recom-img-box {
-    transform: scale(1.06);
-}
-
-/* click feedback */
-.deal-card:active,
-.block-cell:active,
-.recom-card:active {
-    background: rgba(0, 0, 0, 0.03);
-}
-
-/* dark mode */
-html[data-theme='dark'] .deal-card:hover,
-html[data-theme='dark'] .block-cell:hover,
-html[data-theme='dark'] .recom-card:hover {
-    box-shadow: inset 0 0 0 1.5px #c9ced6;
-}
-
-html[data-theme='dark'] .deal-card:active,
-html[data-theme='dark'] .block-cell:active,
-html[data-theme='dark'] .recom-card:active {
-    background: rgba(255, 255, 255, 0.04);
-}
-/* ===== product cards: border layer on top + image grows ===== */
-.deal-card,
-.block-cell,
-.recom-card {
-    position: relative;
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
-
-/* image can't spill out of its cell */
-.block-cell {
-    overflow: hidden;
-}
-
-/* the border is a layer above the image → never covered */
-.deal-card::after,
-.block-cell::after,
-.recom-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border: 1.5px solid transparent;
-    border-radius: inherit;
-    pointer-events: none;
-    z-index: 5;
-    transition: border-color 0.2s ease;
-}
-
-.deal-card:hover::after,
-.block-cell:hover::after,
-.recom-card:hover::after {
-    border-color: #3d3d3d;
-}
-
-/* the image grows a little */
-.deal-img,
-.cell-img,
-.recom-img-box {
-    transition: transform 0.25s ease;
-}
-
-.deal-card:hover .deal-img,
-.block-cell:hover .cell-img {
-    transform: scale(1.1);
-}
-
-.recom-card:hover .recom-img-box {
-    transform: scale(1.06);
-}
-
-/* click feedback */
-.deal-card:active,
-.block-cell:active,
-.recom-card:active {
-    background: rgba(0, 0, 0, 0.03);
-}
-
-/* dark mode */
 html[data-theme='dark'] .deal-card:hover::after,
 html[data-theme='dark'] .block-cell:hover::after,
 html[data-theme='dark'] .recom-card:hover::after {
@@ -1193,4 +995,286 @@ html[data-theme='dark'] .deal-card:active,
 html[data-theme='dark'] .block-cell:active,
 html[data-theme='dark'] .recom-card:active {
     background: rgba(255, 255, 255, 0.04);
+}
+
+/* ===== Laptop ===== */
+@media (max-width: 1199px) {
+    .home-page {
+        padding-inline: 16px;
+    }
+
+    .quote-left {
+        width: 45%;
+    }
+
+    .quote-form {
+        width: 50%;
+    }
+
+    .recom-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .serv-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sup-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ===== Tablet + mobile ===== */
+@media (max-width: 991px) {
+    .home-page {
+        padding: 12px 12px 40px;
+    }
+
+    /* banner: categories row, photo, then the cards */
+    .banner {
+        flex-direction: column;
+        height: auto;
+        padding: 12px;
+    }
+
+    html[dir='rtl'] .banner {
+        padding-inline-start: 12px;
+    }
+
+    .banner-list {
+        flex-direction: row;
+        width: 100%;
+        gap: 6px;
+        padding: 0 0 10px;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .banner-list::-webkit-scrollbar {
+        display: none;
+    }
+
+    .banner-item {
+        flex-shrink: 0;
+        white-space: nowrap;
+        font-size: 14px;
+    }
+
+    .banner-hero {
+        min-height: 240px;
+        border-radius: 6px;
+        padding: 28px 0 28px 24px;
+    }
+
+    .banner-title {
+        width: auto;
+        max-width: 240px;
+        font-size: 26px;
+        line-height: 34px;
+    }
+
+    .banner-small {
+        font-size: 20px;
+    }
+
+    .banner-side {
+        flex-direction: row;
+        width: 100%;
+        margin-inline-start: 0;
+        margin-top: 12px;
+    }
+
+    .side-card {
+        flex: 1;
+    }
+
+    .side-user,
+    .side-orange,
+    .side-pink {
+        height: auto;
+        min-height: 110px;
+    }
+
+    /* deals: title on top, products below */
+    .deals {
+        flex-wrap: wrap;
+        height: auto;
+    }
+
+    .deals-left {
+        width: 100%;
+        padding: 20px 16px;
+    }
+
+    .deal-card {
+        flex: 1 1 33.333%;
+        min-width: 120px;
+        padding: 16px 0;
+        border-top: 1px solid #ededed;
+    }
+
+    .deal-img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .deal-name {
+        font-size: 14px;
+    }
+
+    /* blocks: photo on top, products below */
+    .block {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .block-left {
+        width: 100%;
+        min-height: 140px;
+        padding: 20px 16px;
+    }
+
+    .block-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+    }
+
+    .block-cell {
+        min-height: 110px;
+        padding: 16px;
+        border-bottom: 1px solid #ededed;
+    }
+
+    .block-cell:nth-child(n + 5) {
+        border-bottom: 1px solid #ededed;
+    }
+
+    /* quote: text on top, form below */
+    .quote {
+        flex-direction: column;
+        height: auto;
+        padding: 24px 16px;
+    }
+
+    .quote-left,
+    .quote-form {
+        width: 100%;
+    }
+
+    .quote-left {
+        margin-top: 0;
+    }
+
+    .quote-title {
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    .quote-form {
+        height: auto;
+        margin-top: 20px;
+        padding: 20px 16px;
+    }
+
+    .recom-grid,
+    .serv-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sup-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* the bag takes the whole screen */
+    .cart-panel {
+        width: 100%;
+        padding: 24px 16px;
+    }
+
+    .cart-head {
+        margin-top: 0;
+    }
+
+    .cart-title {
+        font-size: 24px;
+    }
+
+    .cart-item {
+        height: auto;
+        gap: 12px;
+    }
+
+    .cart-img-box {
+        width: 100px;
+        height: 110px;
+    }
+
+    .cart-name {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    .cart-desc {
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 10px;
+    }
+
+    .cart-price,
+    .cart-total-price {
+        font-size: 22px;
+    }
+
+    .cart-total {
+        font-size: 20px;
+    }
+
+    .cart-checkout {
+        height: 52px;
+        font-size: 18px;
+    }
+}
+
+/* ===== Small phones ===== */
+@media (max-width: 576px) {
+    .banner-side {
+        flex-direction: column;
+    }
+
+    .deal-card {
+        flex-basis: 50%;
+    }
+
+    .recom-grid,
+    .serv-grid,
+    .sup-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .recom-card {
+        height: auto;
+        padding: 200px 14px 16px;
+    }
+
+    .quote-row {
+        flex-wrap: wrap;
+    }
+
+    .quote-qty {
+        width: 100%;
+    }
+
+    .quote-select-box {
+        width: 100%;
+    }
+
+    .quote-btn {
+        width: 100%;
+    }
+
+    .recom-title,
+    .serv-title,
+    .sup-title {
+        font-size: 20px;
+    }
 }
