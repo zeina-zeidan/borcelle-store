@@ -136,6 +136,7 @@ span.profile-arrow {
         grid-template-columns: 1fr;
     }
 }
+
 .profile-error {
     margin: 14px 0 0;
     padding: 9px 13px;
@@ -144,43 +145,47 @@ span.profile-arrow {
     color: #e8395a;
     background: #fdeef1;
 }
+
 .profile-saved {
     margin: 12px 0 0;
     font-size: 14px;
     font-weight: 600;
     color: #00b517;
 }
+
 /* Arabic: the setting arrow points left */
 html[dir='rtl'] .profile-arrow {
     transform: scaleX(-1);
 }
+
 /* settings items look like clickable cards in dark mode */
-html[data-theme='dark'] .profile-setting {
-    background: var(--d-surface-2) !important;
-    border: 1px solid var(--d-border) !important;
+html[data-theme='dark'] .profile-setting.profile-setting {
+    background: var(--d-surface-2);
+    border: 1px solid var(--d-border);
     border-radius: 10px;
     transition: border-color 0.2s, background 0.2s;
 }
 
-html[data-theme='dark'] .profile-setting:hover {
-    border-color: #e8395a !important;
-    background: rgba(232, 57, 90, 0.08) !important;
+html[data-theme='dark'] .profile-setting.profile-setting:hover {
+    border-color: #e8395a;
+    background: rgba(232, 57, 90, 0.08);
 }
+
 /* ===== Mobile: same space on both sides, card fits the screen ===== */
 @media (max-width: 991px) {
-    .profile-page {
-        padding: 20px 16px !important;
+    .profile-page.profile-page {
+        padding: 20px 16px;
     }
 
-    .profile-card {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 !important;
+    .profile-card.profile-card {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
         box-sizing: border-box;
     }
 
-    .profile-body {
-        padding: 20px 16px !important;
+    .profile-body.profile-body {
+        padding: 20px 16px;
     }
 
     /* the two fields under each other */
