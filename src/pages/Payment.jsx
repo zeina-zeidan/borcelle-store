@@ -3,19 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 import api from '../service/api'
 import { useLanguage } from '../context/LanguageContext'
+import { useCart } from '../context/CartContext'
 import './Payment.css'
 
-// ╔══════════════════════════════════════════════════════╗
-// ║  false → بيانات فيغما   ·   true → بيانات السيرفر    ║
+// Data source — false: local cart, true: live API
 const USE_API = false
-// ╚══════════════════════════════════════════════════════╝
-
-// ═══════════ بيانات فيغما ═══════════
-const figmaProducts = [
-    { id: 1, name: 'Smart Watches', nameAr: 'ساعات ذكية', desc: 'Special Backed Bread made in the oven', descAr: 'ساعة ذكية بتصميم عصري وبطارية تدوم طويلاً', qty: 2, price: 600, image: '/images/watch.png' },
-    { id: 2, name: 'Smart Watches', nameAr: 'ساعات ذكية', desc: 'Special Backed Bread made in the oven', descAr: 'ساعة ذكية بتصميم عصري وبطارية تدوم طويلاً', qty: 2, price: 600, image: '/images/watch.png' },
-    { id: 3, name: 'Smart Watches', nameAr: 'ساعات ذكية', desc: 'Special Backed Bread made in the oven', descAr: 'ساعة ذكية بتصميم عصري وبطارية تدوم طويلاً', qty: 2, price: 600, image: '/images/watch.png' },
-]
 
 const figmaAddresses = [
     { id: 'a1', label: 'Damascus — Mazzeh, Street 12' },
@@ -27,10 +19,9 @@ const figmaOrders = [
     { id: 'o2', number: '#1019', date: '2026-10-02', total: 58, status: 'delivered', count: 1 },
 ]
 
-const FIGMA_TOTAL = 110
 const TAX = 4
 
-// ═══════════ أدوات ═══════════
+// ===== Server data helpers =====
 const ORIGIN = 'https://training.tamkeen-dev.com/tamkeenstore/public'
 
 const fullImage = (value) => {
@@ -57,7 +48,7 @@ const normalizeCartItem = (c, i) => {
     return {
         id: c.id ?? c.cart_id ?? p.id ?? i,
         name: p.name ?? p.title ?? 'Product',
-        desc: p.description ?? p.desc ?? 'Special Backed Bread made in the oven',
+        desc: p.description ?? p.desc ?? '',
         qty: Number(c.quantity ?? c.qty ?? 1),
         price: Number(p.price ?? p.final_price ?? 0),
         image: fullImage(
@@ -67,7 +58,7 @@ const normalizeCartItem = (c, i) => {
     }
 }
 
-// بيبني نص العنوان، وبيجيب اسم المدينة من قائمة المدن
+// builds the address text, and takes the city name from the cities list
 const normalizeAddress = (a, cities) => {
     const cityId = a.city_id ?? a.city?.id
     const cityName =
@@ -106,6 +97,9 @@ function Payment() {
     const { t, lang } = useLanguage()
     const navigate = useNavigate()
 
+    // the real cart — same items the Cart page shows
+    const { items, removeAll } = useCart()
+
     // show the Arabic text when it exists, otherwise the English one
     const pickText = (en, ar) => (lang === 'ar' && ar ? ar : en)
 
@@ -122,15 +116,27 @@ function Payment() {
     const [showSuccess, setShowSuccess] = useState(false)
     const [paid, setPaid] = useState(false)
 
-    // ═══ السلة ═══
-    const [products, setProducts] = useState(figmaProducts)
+    // cart from the server (API mode only)
+    const [serverItems, setServerItems] = useState(null)
     const [loading, setLoading] = useState(USE_API)
 
-    // ═══ العناوين ═══
+    // the list shown: server cart if we have one, otherwise the local cart
+    const products = serverItems ?? items.map((item) => ({
+        id: item.id,
+        name: item.name,
+        nameAr: item.nameAr,
+        desc: item.seller ?? '',
+        descAr: item.seller ?? '',
+        qty: item.qty,
+        price: item.price,
+        image: item.img,
+    }))
+
+    // ===== addresses =====
     const [addresses, setAddresses] = useState(USE_API ? [] : figmaAddresses)
     const [addressId, setAddressId] = useState(USE_API ? '' : figmaAddresses[0].id)
 
-    // ═══ الطلبات ═══
+    // ===== orders =====
     const [ordersOpen, setOrdersOpen] = useState(false)
     const [orders, setOrders] = useState([])
     const [ordersLoading, setOrdersLoading] = useState(false)
@@ -140,7 +146,7 @@ function Payment() {
     const [placing, setPlacing] = useState(false)
     const [error, setError] = useState('')
 
-    // ═══ جلب السلة ═══
+    // load the cart from the server
     useEffect(() => {
         if (!USE_API) return
 
@@ -148,30 +154,31 @@ function Payment() {
 
         api.get('/cart')
             .then((res) => {
-                console.log('PAY CART →', JSON.stringify(res.data).slice(0, 500))
                 if (!alive) return
                 const list = extractList(res.data).map(normalizeCartItem)
-                if (list.length > 0) setProducts(list)
+                if (list.length > 0) setServerItems(list)
             })
-            .catch((err) => console.log('PAY CART ERROR →', err.response?.status))
-            .finally(() => { if (alive) setLoading(false) })
+            .catch(() => {
+                // keep the local cart
+            })
+            .finally(() => {
+                if (alive) setLoading(false)
+            })
 
         return () => { alive = false }
     }, [])
 
-    // ═══ جلب المدن والعناوين سوا ═══
+    // load the cities and the addresses together
     useEffect(() => {
         if (!USE_API) return
 
         let alive = true
 
         Promise.all([
-            api.get('/city').catch(() => ({ data: [] })),     // المدن اختيارية
+            api.get('/city').catch(() => ({ data: [] })),   // cities are optional
             api.get('/address'),
         ])
             .then(([cityRes, addrRes]) => {
-                console.log('CITIES →', JSON.stringify(cityRes.data).slice(0, 300))
-                console.log('ADDRESSES →', JSON.stringify(addrRes.data).slice(0, 300))
                 if (!alive) return
 
                 const cities = extractList(cityRes.data).map((c) => ({
@@ -183,21 +190,20 @@ function Payment() {
                 setAddresses(list)
                 if (list.length > 0) setAddressId(list[0].id)
             })
-            .catch((err) => console.log('ADDRESS ERROR →', err.response?.status))
+            .catch(() => {
+                // no addresses — the user is told when confirming
+            })
 
         return () => { alive = false }
     }, [])
 
-    // ═══ الحسابات ═══
-    const total = USE_API
-        ? products.reduce((sum, p) => sum + p.price * p.qty, 0)
-        : FIGMA_TOTAL
-
+    // ===== totals: price × quantity for every item =====
+    const total = products.reduce((sum, p) => sum + p.price * p.qty, 0)
     const discount = 0
-    const tax = TAX
+    const tax = products.length > 0 ? TAX : 0
     const netTotal = total - discount + tax
 
-    // ═══ الكوبون ═══
+    // ===== coupon =====
     const handleCheck = () => {
         const code = coupon.trim()
 
@@ -210,18 +216,19 @@ function Payment() {
         setAppliedCoupon(code)
     }
 
-    // ═══ إنشاء الطلب — POST /order ═══
+    // ===== place the order — POST /order =====
     const handleConfirm = async () => {
         setError('')
+
+        if (products.length === 0) {
+            setError(t('pay.errEmpty'))
+            return
+        }
 
         if (!USE_API) {
             setShowSuccess(true)
             setPaid(true)
-            return
-        }
-
-        if (products.length === 0) {
-            setError(t('pay.errEmpty'))
+            removeAll()          // the cart is now empty
             return
         }
 
@@ -233,25 +240,24 @@ function Payment() {
         setPlacing(true)
 
         try {
-            const res = await api.post('/order', {
+            await api.post('/order', {
                 note: '',
                 payment_type: method,
                 address_id: addressId,
                 coupon_code: appliedCoupon,
             })
 
-            console.log('ORDER OK →', JSON.stringify(res.data).slice(0, 400))
             setShowSuccess(true)
             setPaid(true)
+            removeAll()
         } catch (err) {
-            console.log('ORDER ERROR →', err.response?.status, JSON.stringify(err.response?.data))
             setError(readError(err, t('pay.errOrder')))
         } finally {
             setPlacing(false)
         }
     }
 
-    // ═══ عرض الطلبات — GET /order ═══
+    // ===== show the orders — GET /order =====
     const openOrders = async () => {
         setOrdersOpen(true)
         setOrdersError('')
@@ -265,22 +271,20 @@ function Payment() {
 
         try {
             const res = await api.get('/order')
-            console.log('ORDERS →', JSON.stringify(res.data).slice(0, 500))
             setOrders(extractList(res.data).map(normalizeOrder))
         } catch (err) {
-            console.log('ORDERS ERROR →', err.response?.status)
             setOrdersError(readError(err, t('pay.errOrders')))
         } finally {
             setOrdersLoading(false)
         }
     }
 
-    // ═══ إلغاء طلب — DELETE /order/{id} ═══
+    // ===== cancel an order — DELETE /order/{id} =====
     const cancelOrder = async (id) => {
         if (cancellingId) return
 
         const backup = orders
-        setOrders(orders.filter((o) => o.id !== id))     // 👈 فوراً
+        setOrders(orders.filter((o) => o.id !== id))   // update the screen first
         setOrdersError('')
 
         if (!USE_API) return
@@ -290,8 +294,7 @@ function Payment() {
         try {
             await api.delete(`/order/${id}`)
         } catch (err) {
-            console.log('CANCEL ERROR →', err.response?.status)
-            setOrders(backup)                              // 👈 رجّع إذا فشل
+            setOrders(backup)                           // undo if it failed
             setOrdersError(readError(err, t('pay.errCancel')))
         } finally {
             setCancellingId(null)
@@ -418,6 +421,10 @@ function Payment() {
 
                             {loading && <p className="pay-state">{t('pay.loading')}</p>}
 
+                            {!loading && products.length === 0 && (
+                                <p className="pay-state">{t('cart.empty')}</p>
+                            )}
+
                             {products.map((item) => (
                                 <div className="pay-item" key={item.id}>
                                     <img src={item.image} alt={item.name} className="pay-item-img" />
@@ -426,38 +433,41 @@ function Payment() {
                                         <p className="pay-item-desc">{pickText(item.desc, item.descAr)}</p>
                                     </div>
                                     <span className="pay-item-qty">{item.qty}</span>
-                                    <span className="pay-item-price"><bdi>{item.price} AED</bdi></span>
+                                    {/* price × quantity */}
+                                    <span className="pay-item-price">
+                                        <bdi>${(item.price * item.qty).toFixed(2)}</bdi>
+                                    </span>
                                 </div>
                             ))}
                         </div>
 
                         <div className="pay-row">
                             <span>{t('pay.total')}</span>
-                            <span><bdi>{total.toFixed(3)}</bdi></span>
+                            <span><bdi>${total.toFixed(2)}</bdi></span>
                         </div>
 
                         <div className="pay-row">
                             <span>{t('pay.discount')}</span>
-                            <span><bdi>{discount}</bdi></span>
+                            <span><bdi>${discount.toFixed(2)}</bdi></span>
                         </div>
 
                         <div className="pay-row">
                             <span>{t('pay.tax')}</span>
-                            <span><bdi>{tax.toFixed(3)}</bdi></span>
+                            <span><bdi>${tax.toFixed(2)}</bdi></span>
                         </div>
 
                         <div className="pay-divider"></div>
 
                         <div className="pay-row pay-net">
                             <span>{t('pay.netTotal')}</span>
-                            <span><bdi>{netTotal.toFixed(3)}</bdi></span>
+                            <span><bdi>${netTotal.toFixed(2)}</bdi></span>
                         </div>
 
                         <button
                             type="button"
                             className="btn pay-confirm"
                             onClick={handleConfirm}
-                            disabled={placing}
+                            disabled={placing || products.length === 0}
                         >
                             {placing ? t('pay.placing') : t('pay.confirm')}
                         </button>
@@ -467,7 +477,7 @@ function Payment() {
 
             </div>
 
-            {/* ═══ نافذة النجاح ═══ */}
+            {/* ===== Success popup ===== */}
             {showSuccess && (
                 <div className="modal-overlay" onClick={closeModal}>
                     <div className="success-modal" onClick={(e) => e.stopPropagation()}>
@@ -475,7 +485,6 @@ function Payment() {
                             <span className="material-symbols-outlined">close</span>
                         </button>
 
-                        {/* green badge from Figma */}
                         <img src="/images/success-badge.png" alt="" className="success-icon" />
 
                         <p className="success-text pre-line">{t('pay.successText')}</p>
@@ -487,7 +496,7 @@ function Payment() {
                 </div>
             )}
 
-            {/* ═══ نافذة الطلبات — GET + DELETE /order ═══ */}
+            {/* ===== Orders popup — GET + DELETE /order ===== */}
             {ordersOpen && (
                 <div className="modal-overlay" onClick={() => setOrdersOpen(false)}>
                     <div className="orders-modal" onClick={(e) => e.stopPropagation()}>
@@ -511,7 +520,7 @@ function Payment() {
                                     <div className="order-info">
                                         <p className="order-number"><bdi>{o.number}</bdi></p>
                                         <p className="order-meta">
-                                            <bdi>{o.date}</bdi> · {o.count} {t('pay.items')} · <bdi>{o.total.toFixed(3)} AED</bdi>
+                                            <bdi>{o.date}</bdi> · {o.count} {t('pay.items')} · <bdi>${o.total.toFixed(2)}</bdi>
                                         </p>
                                     </div>
 

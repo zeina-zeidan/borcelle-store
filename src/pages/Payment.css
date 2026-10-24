@@ -1,3 +1,4 @@
+/* ===== Page ===== */
 .pay-page {
     min-height: calc(100vh - 86px);
 }
@@ -24,6 +25,7 @@
     position: relative;
     z-index: 1;
     width: 488px;
+    max-width: 100%;
     min-height: 432px;
     color: #fff;
 }
@@ -66,6 +68,7 @@
     -webkit-appearance: none;
     width: 24px;
     height: 24px;
+    flex-shrink: 0;
     border: 2px solid #fff;
     border-radius: 50%;
     background: transparent;
@@ -89,7 +92,8 @@
 }
 
 .pay-coupon-input {
-    width: 358px;
+    flex: 1;
+    min-width: 0;
     height: 48px;
     border: none;
     border-radius: 6px;
@@ -103,6 +107,7 @@
 .pay-check {
     width: 108px;
     height: 48px;
+    flex-shrink: 0;
     border: none;
     border-radius: 6px;
     background: #fff;
@@ -119,8 +124,8 @@
 }
 
 .pay-view {
-    width: 490px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 490px;
     height: 54px;
     margin-top: 28px;
     background: transparent;
@@ -153,7 +158,7 @@
     color: #e8395a;
 }
 
-/* ===== Delivery address (API mode) ===== */
+/* ===== Delivery address ===== */
 .pay-address-box {
     position: relative;
     margin-bottom: 18px;
@@ -186,9 +191,7 @@
     background: #fff;
     display: flex;
     align-items: flex-start;
-    /* start from the top */
-    padding: 100px 86px 60px 85px;
-    /* first number = space from the top */
+    padding: 100px 86px 60px;
 }
 
 .pay-right-paid {
@@ -240,6 +243,7 @@
     max-width: 200px;
 }
 
+/* margin-inline-end flips by itself in Arabic */
 .pay-item-qty {
     display: inline-flex;
     align-items: center;
@@ -252,7 +256,6 @@
     font-size: 15px;
     color: #3d3d3d;
     margin-inline-end: 18px;
-    /* flips in Arabic */
 }
 
 .pay-item-price {
@@ -288,22 +291,23 @@
     font-weight: 600;
 }
 
-.pay-confirm {
+/* button.* beats Bootstrap's .btn without !important */
+button.pay-confirm {
     width: 100%;
     max-width: 496px;
     height: 55px;
-    background: #e83a5e !important;
-    color: #fff !important;
+    background: #e83a5e;
+    color: #fff;
     border: none;
     border-radius: 6px;
     font-size: 18px;
 }
 
-.pay-confirm:hover {
-    background: #d12f51 !important;
+button.pay-confirm:hover {
+    background: #d12f51;
 }
 
-.pay-confirm:disabled {
+button.pay-confirm:disabled {
     opacity: 0.6;
     cursor: default;
 }
@@ -343,10 +347,11 @@
     right: 0;
     height: 45px;
     background: #e8395a;
-    border-radius: 10px 10px 0 0;
+    border-start-start-radius: 10px;
+    border-start-end-radius: 10px;
 }
 
-/* green badge image: centered, half above the card */
+/* green badge: centered, half above the card */
 .success-icon {
     position: absolute;
     top: 0;
@@ -363,7 +368,6 @@
     position: absolute;
     top: 10px;
     inset-inline-end: 12px;
-    /* right in English, left in Arabic */
     width: 26px;
     height: 26px;
     display: flex;
@@ -379,7 +383,7 @@
 
 .success-close .material-symbols-outlined {
     font-size: 22px;
-    color: #fff;
+    color: inherit;
 }
 
 .success-close:hover {
@@ -396,19 +400,19 @@
     color: #1c1c1c;
 }
 
-.success-btn {
+button.success-btn {
     width: 100%;
     height: 48px;
     border: none;
     border-radius: 6px;
-    background: #e8395a !important;
-    color: #fff !important;
+    background: #e8395a;
+    color: #fff;
     font-size: 16px;
     font-weight: 600;
 }
 
-.success-btn:hover {
-    background: #d02f4e !important;
+button.success-btn:hover {
+    background: #d02f4e;
 }
 
 /* ===== Orders modal ===== */
@@ -424,9 +428,8 @@
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
 }
 
-/* the orders modal has no pink strip, so its X is dark */
-.orders-modal .success-close,
-.orders-modal .success-close .material-symbols-outlined {
+/* this modal has no pink strip, so its X is dark */
+.orders-modal .success-close {
     color: #555;
 }
 
@@ -478,6 +481,7 @@
     text-transform: capitalize;
     background: #eff2f4;
     color: #505050;
+    white-space: nowrap;
 }
 
 .status-pending {
@@ -522,7 +526,7 @@
     white-space: pre-line;
 }
 
-/* ===== Dark mode (modals) ===== */
+/* ===== Dark mode ===== */
 html[data-theme='dark'] :is(.success-modal, .orders-modal) {
     background: var(--d-surface);
 }
@@ -544,12 +548,11 @@ html[data-theme='dark'] .order-cancel {
     background: transparent;
 }
 
-html[data-theme='dark'] .orders-modal .success-close,
-html[data-theme='dark'] .orders-modal .success-close .material-symbols-outlined {
+html[data-theme='dark'] .orders-modal .success-close {
     color: var(--d-muted);
 }
 
-/* ===== Desktop ===== */
+/* ===== Desktop: two columns ===== */
 @media (min-width: 992px) {
     .pay-left {
         width: 54%;
@@ -560,22 +563,70 @@ html[data-theme='dark'] .orders-modal .success-close .material-symbols-outlined 
     }
 }
 
-/* ===== Mobile ===== */
+/* ===== Tablet + mobile ===== */
 @media (max-width: 991px) {
     .pay-left {
         padding: 48px 16px;
     }
 
-    .pay-card {
-        width: 100%;
+    .pay-right {
+        padding: 32px 16px;
+    }
+
+    .pay-item {
+        margin-bottom: 28px;
+    }
+
+    .pay-row {
+        margin-bottom: 20px;
+        font-size: 18px;
+    }
+
+    .pay-net {
+        font-size: 20px;
+    }
+}
+
+/* ===== Small phones ===== */
+@media (max-width: 576px) {
+    .pay-title {
+        font-size: 20px;
+    }
+
+    .pay-subtitle,
+    .pay-option-name,
+    .pay-label {
+        font-size: 16px;
+    }
+
+    /* coupon: field on top, button under it */
+    .pay-coupon {
+        flex-wrap: wrap;
+        gap: 12px;
     }
 
     .pay-coupon-input {
-        width: auto;
-        flex: 1;
+        flex-basis: 100%;
     }
 
-    .pay-right {
-        padding: 32px 16px;
+    .pay-check {
+        width: 100%;
+    }
+
+    .pay-item {
+        gap: 10px;
+    }
+
+    .pay-item-img {
+        width: 56px;
+        height: 68px;
+    }
+
+    .pay-item-qty {
+        margin-inline-end: 8px;
+    }
+
+    .success-modal {
+        padding: 70px 20px 24px;
     }
 }

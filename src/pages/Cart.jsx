@@ -6,43 +6,13 @@ import Footer from '../components/Footer'
 import Promo from '../components/Promo'
 import api from '../service/api'
 import { useLanguage } from '../context/LanguageContext'
+import { useCart } from '../context/CartContext'
 import './Cart.css'
 
 // Data source — false: Figma sample data, true: live API
 const USE_API = false
 
-// ===== Figma sample data — English + Arabic =====
-const initialItems = [
-    {
-        id: 'c1',
-        img: '/images/tshirt.png',
-        name: 'T-shirts with multiple colors, for men and lady',
-        nameAr: 'تيشيرتات بألوان متعددة للرجال والنساء',
-        seller: 'Artel Market',
-        price: 78.99,
-        qty: 9,
-    },
-    {
-        id: 'c2',
-        img: '/images/backpack.png',
-        name: 'T-shirts with multiple colors, for men and lady',
-        nameAr: 'تيشيرتات بألوان متعددة للرجال والنساء',
-        seller: 'Best factory LLC',
-        price: 39.0,
-        qty: 3,
-    },
-    {
-        id: 'c3',
-        img: '/images/sofa.png',
-        name: 'T-shirts with multiple colors, for men and lady',
-        nameAr: 'تيشيرتات بألوان متعددة للرجال والنساء',
-        seller: 'Artel Market',
-        price: 170.5,
-        qty: 1,
-    },
-]
-
-// saved items now have an id, so we can move them
+// saved items have an id, so we can move them
 const initialSaved = [
     { id: 's1', img: '/images/tablet.png', price: 99.5, seller: 'Artel Market', name: 'GoPro HERO6 4K Action Camera - Black', nameAr: 'كاميرا GoPro HERO6 4K - سوداء' },
     { id: 's2', img: '/images/phone3.png', price: 99.5, seller: 'Artel Market', name: 'GoPro HERO6 4K Action Camera - Black', nameAr: 'كاميرا GoPro HERO6 4K - سوداء' },
@@ -105,10 +75,19 @@ function Cart() {
     const navigate = useNavigate()
     const { t, lang } = useLanguage()
 
+    // the cart lives in CartContext, so every page sees the same items
+    const {
+        items,
+        addItem,
+        removeItem: dropItem,
+        removeAll: dropAll,
+        changeQty: setQty,
+        setAll,
+    } = useCart()
+
     // show the Arabic text when it exists, otherwise the English one
     const pickText = (en, ar) => (lang === 'ar' && ar ? ar : en)
 
-    const [items, setItems] = useState(USE_API ? [] : initialItems)
     const [saved, setSaved] = useState(initialSaved)
     const [loading, setLoading] = useState(USE_API)
     const [notice, setNotice] = useState('')
@@ -121,7 +100,7 @@ function Cart() {
         return () => clearTimeout(timer)
     }, [flash])
 
-    // load the cart
+    // load the cart from the server
     useEffect(() => {
         if (!USE_API) return
 
@@ -130,11 +109,11 @@ function Cart() {
         api.get('/cart')
             .then((res) => {
                 if (!alive) return
-                setItems(extractList(res.data).map(normalizeCartItem))
+                setAll(extractList(res.data).map(normalizeCartItem))
             })
             .catch(() => {
                 if (!alive) return
-                setItems(initialItems)
+                // keep the saved cart
                 setNotice(t('cart.offline'))
             })
             .finally(() => {
@@ -147,7 +126,7 @@ function Cart() {
     // remove one item (optimistic update + rollback)
     const removeItem = async (id) => {
         const backup = items
-        setItems(items.filter((item) => item.id !== id))
+        dropItem(id)
         setNotice('')
 
         if (!USE_API) return
@@ -155,7 +134,7 @@ function Cart() {
         try {
             await api.delete(`/cart/${id}`)
         } catch {
-            setItems(backup)
+            setAll(backup)
             setNotice(t('cart.errRemove'))
         }
     }
@@ -163,7 +142,7 @@ function Cart() {
     // empty the cart
     const removeAll = async () => {
         const backup = items
-        setItems([])
+        dropAll()
         setNotice('')
 
         if (!USE_API) return
@@ -171,18 +150,18 @@ function Cart() {
         try {
             await Promise.all(backup.map((item) => api.delete(`/cart/${item.id}`)))
         } catch {
-            setItems(backup)
+            setAll(backup)
             setNotice(t('cart.errEmpty'))
         }
     }
 
-    // change the quantity
+    // change the quantity → the price and the total follow
     const changeQty = async (id, value) => {
         const qty = Number(value)
         const backup = items
         const target = items.find((item) => item.id === id)
 
-        setItems(items.map((item) => (item.id === id ? { ...item, qty } : item)))
+        setQty(id, qty)
         setNotice('')
 
         if (!USE_API) return
@@ -193,7 +172,7 @@ function Cart() {
                 quantity: qty,
             })
         } catch {
-            setItems(backup)
+            setAll(backup)
             setNotice(t('cart.errQty'))
         }
     }
@@ -203,13 +182,7 @@ function Cart() {
         const backupItems = items
         const backupSaved = saved
 
-        // already in the cart? add 1 to its quantity, otherwise add it with qty 1
-        const exists = items.find((item) => item.id === savedItem.id)
-        const nextItems = exists
-            ? items.map((item) => (item.id === savedItem.id ? { ...item, qty: item.qty + 1 } : item))
-            : [...items, { ...savedItem, qty: 1 }]
-
-        setItems(nextItems)
+        addItem(savedItem, 1)
         setSaved(saved.filter((s) => s.id !== savedItem.id))
         setNotice('')
         setFlash(t('cart.moved'))
@@ -219,10 +192,10 @@ function Cart() {
         try {
             await api.post('/cart', {
                 product_id: savedItem.productId ?? savedItem.id,
-                quantity: exists ? exists.qty + 1 : 1,
+                quantity: 1,
             })
         } catch {
-            setItems(backupItems)
+            setAll(backupItems)
             setSaved(backupSaved)
             setFlash('')
             setNotice(t('cart.errMove'))
@@ -234,7 +207,7 @@ function Cart() {
         const backupItems = items
         const backupSaved = saved
 
-        setItems(items.filter((item) => item.id !== cartItem.id))
+        dropItem(cartItem.id)
         setSaved([...saved, cartItem])
         setNotice('')
         setFlash(t('cart.savedMsg'))
@@ -244,14 +217,14 @@ function Cart() {
         try {
             await api.delete(`/cart/${cartItem.id}`)
         } catch {
-            setItems(backupItems)
+            setAll(backupItems)
             setSaved(backupSaved)
             setFlash('')
             setNotice(t('cart.errRemove'))
         }
     }
 
-    // totals
+    // totals — price × quantity for every item
     const subtotal = items.reduce((sum, item) => sum + item.price * item.qty, 0)
     const discount = items.length > 0 ? 60 : 0
     const tax = items.length > 0 ? 14 : 0
@@ -306,7 +279,10 @@ function Cart() {
                                     </div>
 
                                     <div className="cart-right">
-                                        <p className="cart-price"><bdi>${item.price.toFixed(2)}</bdi></p>
+                                        {/* price × quantity for this item */}
+                                        <p className="cart-price">
+                                            <bdi>${(item.price * item.qty).toFixed(2)}</bdi>
+                                        </p>
                                         <select
                                             className="qty-select"
                                             value={item.qty}
