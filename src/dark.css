@@ -145,8 +145,8 @@ html[data-theme='dark'] :is(.banner-small, .banner-title, .block-title) {
     color: #1c1c1c;
 }
 
-html[data-theme='dark'] .block .block-left .block-title {
-    color: #1c1c1c !important;
+html[data-theme='dark'][data-theme='dark'] .block .block-left .block-title {
+    color: #1c1c1c;
 }
 
 html[data-theme='dark'] .side-hi {
@@ -196,14 +196,14 @@ html[data-theme='dark'] .banner-item.active {
 }
 
 /* category list hover */
-html[data-theme='dark'] .banner-item:hover {
-    background: rgba(255, 255, 255, 0.06) !important;
-    color: var(--d-text) !important;
+html[data-theme='dark'][data-theme='dark'] .banner-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--d-text);
 }
 
-html[data-theme='dark'] .banner-item.active:hover {
-    background: rgba(74, 144, 226, 0.22) !important;
-    color: #9cc4f5 !important;
+html[data-theme='dark'][data-theme='dark'] .banner-item.active:hover {
+    background: rgba(74, 144, 226, 0.22);
+    color: #9cc4f5;
 }
 
 /* "Welcome" card: same blue family */
@@ -212,8 +212,8 @@ html[data-theme='dark'] .side-user {
 }
 
 /* ===== Same tile size for every product photo (both themes) ===== */
-.recom-img-box {
-    height: auto !important;
+.recom-img-box.recom-img-box {
+    height: auto;
 }
 
 .recom-img {
@@ -253,14 +253,14 @@ html[data-theme='dark'] .sup {
 }
 
 /* ===== Arabic (RTL): services, footer ===== */
-html[dir='rtl'] .serv-icon {
-    right: auto !important;
-    left: 20px !important;
+html[dir='rtl'][dir='rtl'] .serv-icon {
+    right: auto;
+    left: 20px;
 }
 
-html[dir='rtl'] .foot-brand {
-    margin-right: 0 !important;
-    margin-left: 48px !important;
+html[dir='rtl'][dir='rtl'] .foot-brand {
+    margin-right: 0;
+    margin-left: 48px;
 }
 
 .foot-bottom-inner>span:first-child {
@@ -271,19 +271,19 @@ html[dir='rtl'] .foot-brand {
 /* ===== Products page — dark mode ===== */
 
 /* filters column: no card, same as light mode */
-html[data-theme='dark'] .filters {
-    background: transparent !important;
-    border: none !important;
+html[data-theme='dark'][data-theme='dark'] .filters {
+    background: transparent;
+    border: none;
 }
 
 /* divider lines between filter groups */
-html[data-theme='dark'] .filter-box {
-    border-color: var(--d-border) !important;
+html[data-theme='dark'][data-theme='dark'] .filter-box {
+    border-color: var(--d-border);
 }
 
 /* open / close arrows in the filter titles */
-html[data-theme='dark'] .filter-head .material-symbols-outlined {
-    color: var(--d-muted) !important;
+html[data-theme='dark'][data-theme='dark'] .filter-head .material-symbols-outlined {
+    color: var(--d-muted);
 }
 
 /* radios in the brand color */
@@ -292,36 +292,36 @@ html[data-theme='dark'] .radio-row input {
 }
 
 /* "Verified only" and the sort arrows */
-html[data-theme='dark'] :is(.prod-verified, .prod-sort-arrow, .pager-show-arrow) {
-    color: var(--d-text) !important;
+html[data-theme='dark'][data-theme='dark'] :is(.prod-verified, .prod-sort-arrow, .pager-show-arrow) {
+    color: var(--d-text);
 }
 
 /* list / grid buttons */
-html[data-theme='dark'] .prod-view {
-    border-color: var(--d-border) !important;
+html[data-theme='dark'][data-theme='dark'] .prod-view {
+    border-color: var(--d-border);
 }
 
-html[data-theme='dark'] .prod-view .material-symbols-outlined {
-    color: var(--d-muted) !important;
-    background: transparent !important;
+html[data-theme='dark'][data-theme='dark'] .prod-view .material-symbols-outlined {
+    color: var(--d-muted);
+    background: transparent;
 }
 
-html[data-theme='dark'] .prod-view .material-symbols-outlined.active {
-    background: var(--d-surface-2) !important;
-    color: var(--d-text) !important;
+html[data-theme='dark'][data-theme='dark'] .prod-view .material-symbols-outlined.active {
+    background: var(--d-surface-2);
+    color: var(--d-text);
 }
 
 /* grid view chips */
-html[data-theme='dark'] .chip {
-    background: var(--d-surface) !important;
-    border-color: var(--d-border) !important;
-    color: var(--d-text) !important;
+html[data-theme='dark'][data-theme='dark'] .chip {
+    background: var(--d-surface);
+    border-color: var(--d-border);
+    color: var(--d-text);
 }
 
 /* heart button: dark in dark mode */
-html[data-theme='dark'] :is(.prod-fav, .grid-fav) {
-    background: var(--d-surface-2) !important;
-    border-color: var(--d-border) !important;
+html[data-theme='dark'][data-theme='dark'] :is(.prod-fav, .grid-fav) {
+    background: var(--d-surface-2);
+    border-color: var(--d-border);
 }
 
 /* checkboxes: dark box, red when checked */
@@ -356,81 +356,85 @@ html[data-theme='dark'] :is(.check-row, .prod-verified) input[type='checkbox']:c
 }
 
 /* product photo: same white tile, rounded, never touching the card edge */
-html body .prod-page .prod-card img.prod-img {
-    width: 170px !important;
-    height: 170px !important;
-    object-fit: contain !important;
-    background: #fff !important;
-    border-radius: 10px !important;
-    padding: 12px !important;
-    box-sizing: border-box !important;
-    flex-shrink: 0 !important;
-    align-self: center !important;
+html body .prod-page .prod-card img.prod-img.prod-img {
+    width: 170px;
+    height: 170px;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 10px;
+    padding: 12px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    align-self: center;
 }
 
 /* English: space between photo and text */
-html[dir='ltr'] body .prod-page .prod-card img.prod-img {
-    margin: 0 24px 0 0 !important;
+html[dir='ltr'][dir='ltr'] body .prod-page .prod-card img.prod-img {
+    margin: 0 24px 0 0;
 }
 
 /* Arabic: space between photo and text (mirrored) */
-html[dir='rtl'] body .prod-page .prod-card img.prod-img {
-    margin: 0 0 0 24px !important;
+html[dir='rtl'][dir='rtl'] body .prod-page .prod-card img.prod-img {
+    margin: 0 0 0 24px;
 }
 
 /* Arabic: the card gets inner space on the right, like English on the left */
-html[dir='rtl'] body .prod-page .prod-card {
-    padding-right: 20px !important;
+html[dir='rtl'][dir='rtl'] body .prod-page .prod-card {
+    padding-right: 20px;
 }
+
 /* grid view: same white rounded tile for every photo */
-html body .prod-page .grid-card img.grid-img {
-    display: block !important;
-    width: 190px !important;
-    height: 190px !important;
-    margin: 0 auto 16px !important;
-    object-fit: contain !important;
-    background: #fff !important;
-    border-radius: 10px !important;
-    padding: 12px !important;
-    box-sizing: border-box !important;
+html body .prod-page .grid-card img.grid-img.grid-img {
+    display: block;
+    width: 190px;
+    height: 190px;
+    margin: 0 auto 16px;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 10px;
+    padding: 12px;
+    box-sizing: border-box;
 }
+
 /* grid chips: make the "x" visible */
-html[data-theme='dark'] .chip .chip-x {
-    color: var(--d-muted) !important;
+html[data-theme='dark'][data-theme='dark'] .chip .chip-x {
+    color: var(--d-muted);
     cursor: pointer;
 }
 
-html[data-theme='dark'] .chip .chip-x:hover {
-    color: #e8395a !important;
+html[data-theme='dark'][data-theme='dark'] .chip .chip-x:hover {
+    color: #e8395a;
 }
+
 /* recommended items: every white tile is exactly the same size */
-html body .recom-card img.recom-img {
-    display: block !important;
-    width: 175px !important;
-    height: 175px !important;
-    max-width: 100% !important;
-    aspect-ratio: auto !important;
-    margin: 0 auto !important;
-    padding: 12px !important;
-    box-sizing: border-box !important;
-    object-fit: contain !important;
+html body .recom-card img.recom-img.recom-img {
+    display: block;
+    width: 175px;
+    height: 175px;
+    max-width: 100%;
+    aspect-ratio: auto;
+    margin: 0 auto;
+    padding: 12px;
+    box-sizing: border-box;
+    object-fit: contain;
     background: #fff;
     border-radius: 8px;
 }
+
 /* recommended items: every tile in the exact same spot */
-html body .recom-card .recom-img-box {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 100% !important;
-    height: 175px !important;
-    margin: 16px 0 4px !important;
-    padding: 0 !important;
-    background: transparent !important;
+html body .recom-card .recom-img-box.recom-img-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 175px;
+    margin: 16px 0 4px;
+    padding: 0;
+    background: transparent;
 }
 
 /* cancel any old scale / shift on single photos */
-html body .recom-card img.recom-img {
-    transform: none !important;
-    position: static !important;
+html body .recom-card img.recom-img.recom-img {
+    transform: none;
+    position: static;
 }
