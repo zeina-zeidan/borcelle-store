@@ -36,10 +36,10 @@
     color: #fff;
 }
 
-.contact-back .material-symbols-outlined {
+.contact-back.contact-back .material-symbols-outlined {
     font-size: 34px;
     transform: scaleX(-1);
-    font-variation-settings: 'FILL' 1 !important;
+    font-variation-settings: 'FILL' 1;
 }
 
 .contact-title {
@@ -114,18 +114,18 @@
 }
 
 /* زر Send 1110 × 65 */
-.contact-send {
+.contact-send.contact-send {
     width: 100%;
     height: 65px;
-    background: #e8395a !important;
-    color: #fff !important;
+    background: #e8395a;
+    color: #fff;
     border: none;
     border-radius: 8px;
     font-size: 18px;
 }
 
-.contact-send:hover {
-    background: #d12f51 !important;
+.contact-send.contact-send:hover {
+    background: #d12f51;
 }
 
 @media (max-width: 991px) {
@@ -139,6 +139,7 @@
         gap: 20px;
     }
 }
+
 .contact-error {
     margin: 0 0 12px;
     padding: 9px 13px;
@@ -154,6 +155,7 @@
     font-weight: 600;
     color: #00b517;
 }
+
 /* back arrow: points left in English, right in Arabic */
 .contact-back .material-symbols-outlined {
     transform: scaleX(-1);

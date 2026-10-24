@@ -66,22 +66,18 @@ span.material-symbols-outlined {
     line-height: 36px;
     margin: 0;
     white-space: pre-line;
-    /* "\n" in the translated text = new line */
 }
 
 /* ===== Right side: the form ===== */
-.login-right {
+.login-right.login-right {
     position: relative;
-    /* the toggles are placed from here */
     background: #f5f8f9;
     display: flex;
     align-items: center;
-    padding-block: 0 !important;
-    padding-inline: 80px 56px !important;
-    /* flips in Arabic */
+    padding-block: 0;
+    padding-inline: 80px 56px;
 }
 
-/* theme + language buttons in the top corner */
 .login-right>.auth-toggles {
     position: absolute;
     top: 24px;
@@ -93,7 +89,6 @@ span.material-symbols-outlined {
     width: 100%;
     max-width: 507px;
     text-align: start;
-    /* left in English, right in Arabic */
 }
 
 .login-welcome {
@@ -123,7 +118,6 @@ span.material-symbols-outlined {
     border-radius: 6px;
     background: transparent;
     padding-inline: 20px 56px;
-    /* room for the phone icon */
     font-size: 16px;
     outline: none;
 }
@@ -136,12 +130,9 @@ span.material-symbols-outlined {
     position: absolute;
     top: 50%;
     right: auto;
-    /* cancel any old right/left */
     left: auto;
     inset-inline-end: 20px;
-    /* right in English, left in Arabic */
     width: 24px;
-    /* fixed size — never stretches */
     height: 24px;
     display: flex;
     align-items: center;
@@ -151,8 +142,8 @@ span.material-symbols-outlined {
     font-size: 24px;
     line-height: 1;
     pointer-events: none;
-    /* clicks go to the input */
 }
+
 .icon-flip {
     transform: translateY(-50%) scaleX(-1);
 }
@@ -164,17 +155,17 @@ span.material-symbols-outlined {
     margin: -20px 0 16px;
 }
 
-.login-btn {
+.login-btn.login-btn {
     height: 55px;
-    background: #e83a5e !important;
-    color: #fff !important;
+    background: #e83a5e;
+    color: #fff;
     border: none;
     border-radius: 6px;
     font-size: 18px;
 }
 
-.login-btn:hover {
-    background: #d12f51 !important;
+.login-btn.login-btn:hover {
+    background: #d12f51;
 }
 
 /* ===== Dark mode ===== */
@@ -217,10 +208,9 @@ html[data-theme='dark'] .login-input:focus {
         min-height: 50vh;
     }
 
-    .login-right {
+    .login-right.login-right {
         min-height: 50vh;
-        padding: 72px 24px 48px !important;
-        /* extra top room for the toggles */
+        padding: 72px 24px 48px;
     }
 
     .login-logo {
@@ -238,14 +228,14 @@ html[data-theme='dark'] .login-input:focus {
         line-height: 28px;
     }
 }
+
 /* ===== Arabic: icons on the left, text on the right ===== */
-html[dir='rtl'] .login-input-box .login-icon {
-    right: auto !important;
-    left: 20px !important;
+html[dir='rtl'] .login-input-box .login-icon.login-icon {
+    right: auto;
+    left: 20px;
 }
 
-html[dir='rtl'] .login-input {
+html[dir='rtl'] .login-input.login-input {
     text-align: right;
-    padding: 0 20px 0 56px !important;
-    /* text from the right, room for the icon on the left */
+    padding: 0 20px 0 56px;
 }
