@@ -9,7 +9,7 @@ import { useLanguage } from '../context/LanguageContext'
 import './Products.css'
 
 // Data source — false: Figma sample data, true: live API
-const USE_API = false
+const USE_API = true
 
 // category "name" stays English (used for filtering), "key" = translated label
 const categoryList = [

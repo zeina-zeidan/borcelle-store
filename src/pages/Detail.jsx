@@ -10,7 +10,7 @@ import { useLanguage } from '../context/LanguageContext'
 import './Detail.css'
 
 // Data source — false: Figma sample data, true: live API
-const USE_API = false
+const USE_API = true
 
 const DEFAULT_MAIN = '/images/polo-main.png'
 
