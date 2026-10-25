@@ -438,3 +438,10 @@ html body .recom-card img.recom-img.recom-img {
     transform: none;
     position: static;
 }
+/* حل مرتب وبدون !important */
+html[data-theme='dark'] div.coupon-card,
+html[data-theme='dark'] .coupon-card p,
+html[data-theme='dark'] .coupon-card label {
+    color: var(--d-text);
+    background-color: var(--d-surface);
+}

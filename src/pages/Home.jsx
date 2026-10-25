@@ -282,8 +282,18 @@ function Home() {
                                     {isLoggedIn ? t('home.hiBack') : t('home.hiUser')}
                                 </p>
                             </div>
-
-                            {!isLoggedIn && (
+                            {isLoggedIn ? (
+                                <button
+                                    className="side-login"
+                                    type="button"
+                                    onClick={() => {
+                                        localStorage.removeItem('token')
+                                        window.location.reload()
+                                    }}
+                                >
+                                    {t('home.logout') || 'Log out'}
+                                </button>
+                            ) : (
                                 <>
                                     <button className="side-join" type="button" onClick={() => navigate('/login')}>
                                         {t('home.joinNow')}
@@ -293,6 +303,8 @@ function Home() {
                                     </button>
                                 </>
                             )}
+                          
+                
                         </div>
 
                         <div className="side-card side-orange pre-line">{t('home.sideOrange')}</div>

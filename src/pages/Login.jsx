@@ -17,18 +17,26 @@ function Login() {
         e.preventDefault()
         setError('')
 
-        // simple check before calling the server
-        if (!phone.trim()) {
+        const trimmedPhone = phone.trim()
+
+        // لازم يكون في رقم
+        if (!trimmedPhone) {
             setError(t('login.errPhone'))
+            return
+        }
+
+        // لازم يكون 8 أرقام على الأقل (أرقام فقط)
+        const digitsOnly = trimmedPhone.replace(/\D/g, '')
+        if (digitsOnly.length < 10) {
+            setError(t('login.errShort') || 'Phone number must be at least 8 digits')
             return
         }
 
         setLoading(true)
 
         try {
-            // the server sends the code (OTP) to this number
-            await api.post('/login', { phone: phone.trim() })
-            navigate('/verify', { state: { phone: phone.trim() } })
+            await api.post('/login', { phone: trimmedPhone })
+            navigate('/verify', { state: { phone: trimmedPhone } })
         } catch (err) {
             setError(err.response?.data?.message || t('login.errSend'))
         } finally {

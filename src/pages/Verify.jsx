@@ -78,7 +78,7 @@ function Verify() {
                 localStorage.setItem('token', token)
 
                 // go back where the user was heading (e.g. payment), or home
-                const next = sessionStorage.getItem('after_login') || '/'
+                const next = sessionStorage.getItem('after_login') || '/register'
                 sessionStorage.removeItem('after_login')
                 navigate(next, { replace: true })
             } else {
