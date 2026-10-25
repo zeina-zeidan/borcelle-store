@@ -59,7 +59,6 @@ function Contact() {
         }
 
         if (!USE_API) {
-            console.log('CONTACT (local) →', payload)
             setSent(true)
             setName('')
             setEmail('')
@@ -71,14 +70,11 @@ function Contact() {
 
         try {
             const res = await api.post('/contact', payload)
-            console.log('CONTACT OK →', JSON.stringify(res.data).slice(0, 300))
-
             setSent(true)
             setName('')          // 👈 تفريغ الحقول بعد النجاح
             setEmail('')
             setMessage('')
         } catch (err) {
-            console.log('CONTACT ERROR →', err.response?.status, JSON.stringify(err.response?.data))
 
             const fieldErrors = err.response?.data?.errors
             const firstField = fieldErrors && Object.values(fieldErrors)[0]

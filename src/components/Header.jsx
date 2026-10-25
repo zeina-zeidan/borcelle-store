@@ -64,7 +64,6 @@ function Header({ onCartClick, simple }) {
                 setUnread(countUnread(extractList(res.data)))
             })
             .catch((err) => {
-                console.log('NOTIFICATIONS ERROR →', err.response?.status)
             })
 
         return () => { alive = false }
