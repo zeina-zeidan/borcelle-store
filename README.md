@@ -12,7 +12,7 @@
 ---
 
 ## 🌟 المعاينة المباشرة(Live Demo)
-> 👉 [borcelle-zein.netlify.app](https://borcelle-zein.netlify.app)
+> 👉 [borcelle-zeina.netlify.app](https://borcelle-zein.netlify.app)
 
 ---
 
